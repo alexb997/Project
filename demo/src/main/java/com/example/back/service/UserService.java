@@ -18,4 +18,8 @@ public class UserService {
     public Optional<User> loginUser(String username,String password){
         return userRepository.findByUsernameAndPassword(username,password);
     }
+
+    public User addNewUser(User user) throws IllegalArgumentException{
+        return userRepository.save(user);
+    }
 }
