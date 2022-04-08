@@ -1,12 +1,10 @@
 package com.example.back.controller;
 
 import com.example.back.model.Car;
+import com.example.back.service.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -14,9 +12,20 @@ import java.util.Optional;
 @RequestMapping("/cars")
 public class CarController {
 
+    private final CarService carService;
+
+    public CarController(CarService carService){
+        this.carService=carService;
+    }
+
     @PostMapping("/add")
-    public ResponseEntity<String> addCar() {
+    public ResponseEntity<Car> addCar(@RequestBody Car car) {
         System.out.println("Calling car controller addCar");
-        return new ResponseEntity<String>("Calling car controller addCar",HttpStatus.OK);
+        try{
+            Car newCar = carService.addCar(car);
+            return new ResponseEntity<>(newCar,HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
