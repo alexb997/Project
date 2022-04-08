@@ -22,7 +22,7 @@ public class UserController {
     @GetMapping("/login")
     public ResponseEntity<User> loginUser() {
         System.out.println("Calling controller login");
-        Optional<User> responseUser =userService.loginUser("owner");
+        Optional<User> responseUser = userService.loginUser("owner","password");
         System.out.println(responseUser);
         return responseUser.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
