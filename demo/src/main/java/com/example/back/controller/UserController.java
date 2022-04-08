@@ -5,6 +5,7 @@ import com.example.back.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,4 +27,10 @@ public class UserController {
         System.out.println(responseUser);
         return responseUser.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<String> registerUser() {
+        System.out.println("Calling controller register user");
+        return new ResponseEntity<String>("Controller post user",HttpStatus.OK);
+    };
 }
