@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
@@ -24,17 +23,17 @@ public class CarController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<List<Car>> filterCars(@RequestParam(required = false) Map<String,String> filterParams,
+    public ResponseEntity<Response> filterCars(@RequestParam(required = false) Map<String,String> filterParams,
                                              @RequestParam(defaultValue = "0") int page,
                                              @RequestParam(defaultValue = "3") int size){
         try{
             List<Car> cars;
             Pageable paging = PageRequest.of(page, size);
             Page<Car> pageCars;
-            pageCars = carService.allCars(paging);
+            pageCars = carService.findByFilters(filterParams,paging);
             cars = pageCars.getContent();
             Response response = new Response(cars,pageCars.getTotalPages(),pageCars.getTotalElements(),pageCars.getNumber());
-            return new ResponseEntity(response,HttpStatus.OK);
+            return new ResponseEntity<>(response,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Cars not found",HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -50,4 +49,15 @@ public class CarController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<HttpStatus> deleteAllCars() {
+        try {
+            carService.removeAllCars();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity("Couldn't delete",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

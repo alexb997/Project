@@ -29,4 +29,16 @@ public class CarService {
     public Page<Car> allCars(Pageable pageable){
         return carRepository.findAll(pageable);
     }
+
+    public Page<Car> findByFilters(Map<String,String> filters,Pageable pageable){
+        for (String filter : filters.keySet()) {
+            System.out.println(filter + "=" + filters.get(filter));
+        }
+        return carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegex
+                ("toyota","","","","",pageable);
+    }
+
+    public void removeAllCars(){
+        carRepository.deleteAll();
+    }
 }
