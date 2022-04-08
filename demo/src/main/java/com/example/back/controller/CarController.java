@@ -2,6 +2,9 @@ package com.example.back.controller;
 
 import com.example.back.model.Car;
 import com.example.back.service.CarService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +24,20 @@ public class CarController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<String> filterCars(@RequestParam(required = false) Map<String,String> allParams){
-        return new ResponseEntity<>("Parameters are " + allParams.entrySet(),HttpStatus.OK);
+    public ResponseEntity<List<Car>> filterCars(@RequestParam(required = false) Map<String,String> filterParams,
+                                             @RequestParam(defaultValue = "0") int page,
+                                             @RequestParam(defaultValue = "3") int size){
+        try{
+            List<Car> cars;
+            Pageable paging = PageRequest.of(page, size);
+            Page<Car> pageCars;
+            pageCars = carService.allCars(paging);
+            cars = pageCars.getContent();
+            Response response = new Response(cars,pageCars.getTotalPages(),pageCars.getTotalElements(),pageCars.getNumber());
+            return new ResponseEntity(response,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("Cars not found",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping("/add")
