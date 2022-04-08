@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +18,11 @@ public class CarController {
 
     public CarController(CarService carService){
         this.carService=carService;
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<String> filterCars(@RequestParam(required = false) Map<String,String> allParams){
+        return new ResponseEntity<>("Parameters are " + allParams.entrySet(),HttpStatus.OK);
     }
 
     @PostMapping("/add")
