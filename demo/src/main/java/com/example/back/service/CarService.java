@@ -82,4 +82,8 @@ public class CarService {
     public void removeAllCars(){
         carRepository.deleteAll();
     }
+
+    public void removeCarById(String id ){
+        carRepository.deleteById(id);
+    }
 }

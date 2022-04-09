@@ -60,4 +60,13 @@ public class CarController {
         }
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deleteCar(@PathVariable("id") String id) {
+        try {
+            carService.removeCarById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity("Couldn't delete",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
