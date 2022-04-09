@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -18,7 +19,15 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    public Optional<Car> findById(String id) {
+        return carRepository.findById(id);
+    }
+
     public Car addCar(Car car) throws IllegalArgumentException{
+        return carRepository.save(car);
+    }
+
+    public Car editCar(Car car){
         return carRepository.save(car);
     }
 
@@ -86,4 +95,6 @@ public class CarService {
     public void removeCarById(String id ){
         carRepository.deleteById(id);
     }
+
+
 }

@@ -53,8 +53,20 @@ public class CarController {
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Car> editCar(@PathVariable("id") String id, @RequestBody Car car) {
-        System.out.println("check mapping");
-        return new ResponseEntity("working",HttpStatus.OK);
+        Optional<Car> carData = carService.findById(id);
+        if (carData.isPresent()) {
+            Car newCar = carData.get();
+            newCar.setBrand(car.getBrand());
+            newCar.setColor(car.getColor());
+            newCar.setCombustible(car.getCombustible());
+            newCar.setBody(car.getBody());
+            newCar.setNumberDoors(car.getNumberDoors());
+            newCar.setCargoVolume(car.getCargoVolume());
+            newCar.setModel(car.getModel());
+            return new ResponseEntity<>(carService.editCar(newCar), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/deleteAll")
