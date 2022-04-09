@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cars")
@@ -48,6 +49,12 @@ public class CarController {
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Car> editCar(@PathVariable("id") String id, @RequestBody Car car) {
+        System.out.println("check mapping");
+        return new ResponseEntity("working",HttpStatus.OK);
     }
 
     @DeleteMapping("/deleteAll")
