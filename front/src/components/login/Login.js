@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { Container, Col, Row, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
@@ -8,7 +9,27 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const HandleSubmit = () => {
-    //backendCall check login works
+    console.log("called submit handler");
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(
+      "http://localhost:8080/users/login/?username=" +
+        username +
+        "&password=" +
+        password,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setUser(data);
+        // if(user){
+        // }else{
+        // }
+      });
   };
 
   return (
@@ -20,10 +41,7 @@ function Login() {
         <Col>
           <label>Username</label>
         </Col>
-        <input
-          onChange={(e) => setUsername(e.target.value)}
-          type={"username"}
-        ></input>
+        <input onChange={(e) => setUsername(e.target.value)}></input>
       </Row>
       <Row>
         <Col>
@@ -31,12 +49,12 @@ function Login() {
         </Col>
         <input
           onChange={(e) => setPassword(e.target.value)}
-          type={"password"}
+          type="password"
         ></input>
       </Row>
       <Row>
         <Col>
-          <Button onClick={HandleSubmit()}>Submit</Button>
+          <Button onClick={HandleSubmit}>Submit</Button>
         </Col>
       </Row>
     </Container>

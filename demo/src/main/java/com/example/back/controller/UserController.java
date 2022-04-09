@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -18,9 +19,9 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public ResponseEntity<User> loginUser() {
+    public ResponseEntity<User> loginUser(@RequestParam String username, @RequestParam String password) {
         System.out.println("Calling controller login");
-        Optional<User> responseUser = userService.loginUser("owner","password");
+        Optional<User> responseUser = userService.loginUser(username,password);
         System.out.println(responseUser);
         return responseUser.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
