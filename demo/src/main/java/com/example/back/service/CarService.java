@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class CarService {
@@ -31,11 +32,51 @@ public class CarService {
     }
 
     public Page<Car> findByFilters(Map<String,String> filters,Pageable pageable){
+        String brand="";
+        String color="";
+        String model="";
+        String combustible="";
+        String body="";
+        int numberDoors=0;
+        int cargoVolume=0;
         for (String filter : filters.keySet()) {
-            System.out.println(filter + "=" + filters.get(filter));
+            if(Objects.equals(filter, "brand")){
+                brand=filters.get(filter);
+            }
+            if(Objects.equals(filter, "color")){
+                color=filters.get(filter);
+            }
+            if(Objects.equals(filter, "model")){
+                model=filters.get(filter);
+            }
+            if(Objects.equals(filter, "combustible")){
+                combustible=filters.get(filter);
+            }
+            if(Objects.equals(filter, "body")){
+                body=filters.get(filter);
+            }
+            if(Objects.equals(filter, "numberDoors")){
+                numberDoors=Integer.parseInt(filters.get(filter));
+            }
+            if(Objects.equals(filter, "cargoVolume")){
+                cargoVolume=Integer.parseInt(filters.get(filter));
+            }
+        }
+        if(numberDoors!=0 && cargoVolume!=0) {
+            return carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndNumberDoorsAndCargoVolume
+                    (brand,color,model,body,combustible,numberDoors,cargoVolume,pageable);
+
+        }
+        if(numberDoors!=0){
+            return carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndNumberDoors
+                    (brand,color,model,body,combustible,numberDoors,pageable);
+        }
+        if(cargoVolume!=0){
+            return carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndCargoVolume
+                    (brand,color,model,body,combustible,cargoVolume,pageable);
         }
         return carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegex
-                ("toyota","","","","",pageable);
+                (brand,color,model,body,combustible,pageable);
     }
 
     public void removeAllCars(){

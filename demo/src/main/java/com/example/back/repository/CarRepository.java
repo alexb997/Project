@@ -11,4 +11,13 @@ public interface CarRepository extends PagingAndSortingRepository<Car,String>{
     Page<Car>
     findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegex
             (String brand,String color,String model,String body,String combustible, Pageable pageable);
+    Page<Car>
+    findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndNumberDoors
+            (String brand,String color,String model,String body,String combustible, int numberDoors, Pageable pageable);
+    Page<Car>
+    findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndCargoVolume
+            (String brand,String color,String model,String body,String combustible, int cargoVolume, Pageable pageable);
+    Page<Car>
+    findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegexAndNumberDoorsAndCargoVolume
+            (String brand,String color,String model,String body,String combustible,int numberDoors,int cargoVolume, Pageable pageable);
 }
