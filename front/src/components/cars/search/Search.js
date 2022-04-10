@@ -6,17 +6,43 @@ import "./Search.css";
 function Search() {
   const [isLoading, setIsLoading] = useState(true);
   const [carsList, setCarsList] = useState([]);
-  const [carsPerPage, setCarsPerPage] = useState(7);
+  const [carsPerPage, setCarsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
   const [totalElements, setTotalElements] = useState();
   const [show, setShow] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [keyword, setKeyword] = useState("");
-  const [by, setBy] = useState("");
+  const [modelFilter, setModelFilter] =useState("");
+  const [brandFilter, setBrandFilter] =useState("");
+  const [colorFilter, setColorFilter] =useState("");
+  const [bodyFilter, setBodyFilter] =useState("");
+  const [combustibleFilter, setCombustibleFilter] =useState("");
+  const [cargoVolumeFilter, setCargoVolumeFilter] =useState(0);
+  const [numberDoorsFilter, setNumberDoorsFilter] =useState(0);
 
   useEffect(async () => {
-    //fetch all cars
+    await fetch(
+      "http://localhost:8080/cars/filter?brand="+brandFilter +
+        "&color=" +colorFilter +
+        "&body=" +bodyFilter +
+        "&combustible=" +combustibleFilter +
+        "&cargoVolume=" +cargoVolumeFilter+
+        "&model=" +modelFilter+
+        "&numberDoors=" +numberDoorsFilter+
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        carsPerPage 
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoading(false);
+        setCarsList(data.items);
+        setTotalPages(data.totalPages ? data.totalPages : 0);
+        setTotalElements(data.totalItems ? data.totalItems : 0);
+        setIsUpdating(false);
+      })
+      .catch((err) => console.log(err));
   }, [isUpdating]);
 
   const prevPage = () => {
@@ -60,7 +86,7 @@ function Search() {
                 id="brand-search"
                 placeholder="Brand"
                 name="keyword"
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => setBrandFilter(e.target.value)}
               />
               <hr />
             </Row>
@@ -70,7 +96,7 @@ function Search() {
                 id="model-search"
                 placeholder="Model"
                 name="keyword"
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => setModelFilter(e.target.value)}
               />
               <hr />
             </Row>
@@ -80,7 +106,7 @@ function Search() {
                 id="color-search"
                 placeholder="Color"
                 name="keyword"
-                onChange={(e) => setKeyword(e.target.value)}
+                onChange={(e) => setColorFilter(e.target.value)}
               />
               <hr />
             </Row>
