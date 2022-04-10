@@ -12,10 +12,10 @@ function AppRouter() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cars/filter" element={<Search/>}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/login/failure" element={<Failure />}/>
-        <Route path="/login/success" element={<Success />}/>
+        <Route path="/cars" element={<Search />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/login/failure" element={<Failure />} />
+        <Route path="/login/success" element={<Success />} />
       </Routes>
     </Router>
   );

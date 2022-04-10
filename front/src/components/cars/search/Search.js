@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
 
 import "./Search.css";
+import CarContainer from "../CarContainer";
 
 function Search() {
   const [isLoading, setIsLoading] = useState(true);
@@ -235,7 +236,7 @@ function Search() {
               {carsList.length !== 0 ? (
                 carsList.map((c, index) => (
                   <Col md={3} key={index} className="car-item">
-                    Car Container!!
+                    <CarContainer car={c} />
                   </Col>
                 ))
               ) : (
