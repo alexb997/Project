@@ -1,4 +1,4 @@
-import { useEffect, useState, useHistory } from "react";
+import { useEffect, useState } from "react";
 import { Container, Button, Col, Row } from "react-bootstrap";
 
 import "./Search.css";
@@ -10,29 +10,35 @@ function Search() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
   const [totalElements, setTotalElements] = useState();
-  const [show, setShow] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [modelFilter, setModelFilter] =useState("");
-  const [brandFilter, setBrandFilter] =useState("");
-  const [colorFilter, setColorFilter] =useState("");
-  const [bodyFilter, setBodyFilter] =useState("");
-  const [combustibleFilter, setCombustibleFilter] =useState("");
-  const [cargoVolumeFilter, setCargoVolumeFilter] =useState(0);
-  const [numberDoorsFilter, setNumberDoorsFilter] =useState(0);
+  const [modelFilter, setModelFilter] = useState("");
+  const [brandFilter, setBrandFilter] = useState("");
+  const [colorFilter, setColorFilter] = useState("");
+  const [bodyFilter, setBodyFilter] = useState("");
+  const [combustibleFilter, setCombustibleFilter] = useState("");
+  const [cargoVolumeFilter, setCargoVolumeFilter] = useState(0);
+  const [numberDoorsFilter, setNumberDoorsFilter] = useState(0);
 
   useEffect(async () => {
     await fetch(
-      "http://localhost:8080/cars/filter?brand="+brandFilter +
-        "&color=" +colorFilter +
-        "&body=" +bodyFilter +
-        "&combustible=" +combustibleFilter +
-        "&cargoVolume=" +cargoVolumeFilter+
-        "&model=" +modelFilter+
-        "&numberDoors=" +numberDoorsFilter+
+      "http://localhost:8080/cars/filter?brand=" +
+        brandFilter +
+        "&color=" +
+        colorFilter +
+        "&body=" +
+        bodyFilter +
+        "&combustible=" +
+        combustibleFilter +
+        "&cargoVolume=" +
+        cargoVolumeFilter +
+        "&model=" +
+        modelFilter +
+        "&numberDoors=" +
+        numberDoorsFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
-        carsPerPage 
+        carsPerPage
     )
       .then((response) => response.json())
       .then((data) => {
@@ -47,7 +53,7 @@ function Search() {
 
   const prevPage = () => {
     if (currentPage - 1 < 1) {
-      setShow(true);
+      console.log("There's no previous page");
     } else {
       setCurrentPage(currentPage - 1);
       setIsUpdating(true);
@@ -56,25 +62,90 @@ function Search() {
 
   const nextPage = () => {
     if (currentPage + 1 > totalPages) {
-      setShow(true);
+      console.log("There's no next page");
     } else {
       setCurrentPage(currentPage + 1);
       setIsUpdating(true);
     }
   };
 
-  const handleFilterBy = () => {};
+  const handleSearchBy = () => {
+    fetch(
+      "http://localhost:8080/cars/filter?brand=" +
+        brandFilter +
+        "&color=" +
+        colorFilter +
+        "&body=" +
+        bodyFilter +
+        "&combustible=" +
+        combustibleFilter +
+        "&cargoVolume=" +
+        cargoVolumeFilter +
+        "&model=" +
+        modelFilter +
+        "&numberDoors=" +
+        numberDoorsFilter +
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        carsPerPage
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCarsList(data.items);
+        setTotalPages(data.totalPages ? data.totalPages : 0);
+        setTotalElements(data.totalItems ? data.totalItems : 0);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleResetFilters = () => {
+    setBodyFilter("");
+    setCombustibleFilter("");
+    setModelFilter("");
+    setBrandFilter("");
+    setColorFilter("");
+    setCargoVolumeFilter(0);
+    setNumberDoorsFilter(0);
+    fetch(
+      "http://localhost:8080/cars/filter?brand=" +
+        brandFilter +
+        "&color=" +
+        colorFilter +
+        "&body=" +
+        bodyFilter +
+        "&combustible=" +
+        combustibleFilter +
+        "&cargoVolume=" +
+        cargoVolumeFilter +
+        "&model=" +
+        modelFilter +
+        "&numberDoors=" +
+        numberDoorsFilter +
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        carsPerPage
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setCarsList(data.items);
+        setTotalPages(data.totalPages ? data.totalPages : 0);
+        setTotalElements(data.totalItems ? data.totalItems : 0);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="search-cars">
       {isLoading && <p>Loading...</p>}
-      <Container fluid={true} className="list-zone">
+      <Container className="list-zone" fluid>
         <Row>
           <Col xs={6} md={4} className="filters-zone">
             <p style={{ "text-align": "right" }}>
               <small>
                 Reset the:{" "}
-                <u className="reset-button" onClick={() => handleFilterBy("")}>
+                <u className="reset-button" onClick={handleResetFilters}>
                   filters
                 </u>
               </small>
@@ -109,6 +180,51 @@ function Search() {
                 onChange={(e) => setColorFilter(e.target.value)}
               />
               <hr />
+            </Row>
+            <Row>
+              <input
+                type="text"
+                id="body-search"
+                placeholder="Body"
+                name="keyword"
+                onChange={(e) => setBodyFilter(e.target.value)}
+              />
+              <hr />
+            </Row>
+            <Row>
+              <input
+                type="text"
+                id="combustible-search"
+                placeholder="Combustible"
+                name="keyword"
+                onChange={(e) => setCombustibleFilter(e.target.value)}
+              />
+              <hr />
+            </Row>
+            <Row>
+              <input
+                type="number"
+                id="numberDoors-search"
+                placeholder="Number doors"
+                name="keyword"
+                onChange={(e) => setNumberDoorsFilter(e.target.value)}
+              />
+              <hr />
+            </Row>
+            <Row>
+              <input
+                type="number"
+                id="cargoVolume-search"
+                placeholder="Cargo volume"
+                name="keyword"
+                onChange={(e) => setCargoVolumeFilter(e.target.value)}
+              />
+              <hr />
+            </Row>
+            <Row>
+              <Button variant="primary" onClick={handleSearchBy}>
+                Search
+              </Button>
             </Row>
           </Col>
           <Col xs={6} md={8}>
