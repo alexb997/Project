@@ -143,17 +143,13 @@ function Search() {
       <Container className="list-zone" fluid>
         <Row>
           <Col xs={3} md={4} className="filters-zone">
-            <p style={{ "text-align": "right" }}>
-              <small>
-                Reset the:{" "}
-                <u className="reset-button" onClick={handleResetFilters}>
-                  filters
-                </u>
-              </small>
-            </p>
+            <Button className="reset-button resetFiltersTag">
+              Reset filters
+            </Button>
             <h2>Search by:</h2>
             <Row>
               <Col md={3}>
+                <Container className="filterTag">Brand:</Container>
                 <input
                   type="text"
                   id="brand-search"
@@ -163,6 +159,7 @@ function Search() {
                 />
               </Col>
               <Col md={{ span: 3, offset: 3 }}>
+                <Container className="filterTag">Color:</Container>
                 <input
                   type="text"
                   id="color-search"
@@ -175,6 +172,7 @@ function Search() {
             </Row>
             <Row>
               <Col md={3}>
+                <Container className="filterTag">Model:</Container>
                 <input
                   type="text"
                   id="model-search"
@@ -184,6 +182,7 @@ function Search() {
                 />
               </Col>
               <Col md={{ span: 3, offset: 3 }}>
+                <Container className="filterTag">Combustible:</Container>
                 <input
                   type="text"
                   id="combustible-search"
@@ -194,18 +193,22 @@ function Search() {
               </Col>
               <hr />
             </Row>
-            <Row>
-              <input
-                type="text"
-                id="body-search"
-                placeholder="Body"
-                name="keyword"
-                onChange={(e) => setBodyFilter(e.target.value)}
-              />
-              <hr />
-            </Row>
+            <Container>
+              <Row>
+                <Container className="filterTag">Body:</Container>
+                <input
+                  type="text"
+                  id="body-search"
+                  placeholder="Body"
+                  name="keyword"
+                  onChange={(e) => setBodyFilter(e.target.value)}
+                />
+                <hr />
+              </Row>
+            </Container>
             <Row>
               <Col md={3}>
+                <Container className="filterTag">Doors:</Container>
                 <input
                   type="number"
                   id="numberDoors-search"
@@ -215,6 +218,7 @@ function Search() {
                 />
               </Col>
               <Col md={{ span: 3, offset: 3 }}>
+                <Container className="filterTag">Volume:</Container>
                 <input
                   type="number"
                   id="cargoVolume-search"
@@ -223,12 +227,15 @@ function Search() {
                   onChange={(e) => setCargoVolumeFilter(e.target.value)}
                 />
               </Col>
+
               <hr />
             </Row>
             <Row>
-              <Button variant="primary" onClick={handleSearchBy}>
-                Search
-              </Button>
+              <Container fluid>
+                <Button variant="danger" onClick={handleSearchBy}>
+                  Search
+                </Button>
+              </Container>
             </Row>
           </Col>
           <Col xs={9} md={8}>
@@ -249,6 +256,7 @@ function Search() {
           </Col>
         </Row>
       </Container>
+      <hr />
       <span>
         <Button onClick={() => prevPage()}>Prev..</Button>
         <span>{currentPage}</span>
