@@ -142,7 +142,7 @@ function Search() {
       {isLoading && <p>Loading...</p>}
       <Container className="list-zone" fluid>
         <Row>
-          <Col xs={6} md={4} className="filters-zone">
+          <Col xs={3} md={4} className="filters-zone">
             <p style={{ "text-align": "right" }}>
               <small>
                 Reset the:{" "}
@@ -153,33 +153,45 @@ function Search() {
             </p>
             <h2>Search by:</h2>
             <Row>
-              <input
-                type="text"
-                id="brand-search"
-                placeholder="Brand"
-                name="keyword"
-                onChange={(e) => setBrandFilter(e.target.value)}
-              />
+              <Col md={3}>
+                <input
+                  type="text"
+                  id="brand-search"
+                  placeholder="Brand"
+                  name="keyword"
+                  onChange={(e) => setBrandFilter(e.target.value)}
+                />
+              </Col>
+              <Col md={{ span: 3, offset: 3 }}>
+                <input
+                  type="text"
+                  id="color-search"
+                  placeholder="Color"
+                  name="keyword"
+                  onChange={(e) => setColorFilter(e.target.value)}
+                />
+              </Col>
               <hr />
             </Row>
             <Row>
-              <input
-                type="text"
-                id="model-search"
-                placeholder="Model"
-                name="keyword"
-                onChange={(e) => setModelFilter(e.target.value)}
-              />
-              <hr />
-            </Row>
-            <Row>
-              <input
-                type="text"
-                id="color-search"
-                placeholder="Color"
-                name="keyword"
-                onChange={(e) => setColorFilter(e.target.value)}
-              />
+              <Col md={3}>
+                <input
+                  type="text"
+                  id="model-search"
+                  placeholder="Model"
+                  name="keyword"
+                  onChange={(e) => setModelFilter(e.target.value)}
+                />
+              </Col>
+              <Col md={{ span: 3, offset: 3 }}>
+                <input
+                  type="text"
+                  id="combustible-search"
+                  placeholder="Combustible"
+                  name="keyword"
+                  onChange={(e) => setCombustibleFilter(e.target.value)}
+                />
+              </Col>
               <hr />
             </Row>
             <Row>
@@ -193,33 +205,24 @@ function Search() {
               <hr />
             </Row>
             <Row>
-              <input
-                type="text"
-                id="combustible-search"
-                placeholder="Combustible"
-                name="keyword"
-                onChange={(e) => setCombustibleFilter(e.target.value)}
-              />
-              <hr />
-            </Row>
-            <Row>
-              <input
-                type="number"
-                id="numberDoors-search"
-                placeholder="Number doors"
-                name="keyword"
-                onChange={(e) => setNumberDoorsFilter(e.target.value)}
-              />
-              <hr />
-            </Row>
-            <Row>
-              <input
-                type="number"
-                id="cargoVolume-search"
-                placeholder="Cargo volume"
-                name="keyword"
-                onChange={(e) => setCargoVolumeFilter(e.target.value)}
-              />
+              <Col md={3}>
+                <input
+                  type="number"
+                  id="numberDoors-search"
+                  placeholder="Number doors"
+                  name="keyword"
+                  onChange={(e) => setNumberDoorsFilter(e.target.value)}
+                />
+              </Col>
+              <Col md={{ span: 3, offset: 3 }}>
+                <input
+                  type="number"
+                  id="cargoVolume-search"
+                  placeholder="Cargo volume"
+                  name="keyword"
+                  onChange={(e) => setCargoVolumeFilter(e.target.value)}
+                />
+              </Col>
               <hr />
             </Row>
             <Row>
@@ -228,7 +231,7 @@ function Search() {
               </Button>
             </Row>
           </Col>
-          <Col xs={6} md={8}>
+          <Col xs={9} md={8}>
             <Row>
               <p style={{ textAlign: "left" }}>
                 {totalElements} matching results

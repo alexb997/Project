@@ -1,5 +1,4 @@
 import { Container, Row, Col } from "react-bootstrap";
-import "./Cars.css";
 
 function CarContainer(props) {
   function Capitalize(str) {
