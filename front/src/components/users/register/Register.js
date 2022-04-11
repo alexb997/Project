@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../Users.css";
 
 function Register() {
   const [user, setUser] = useState({});
@@ -43,35 +44,31 @@ function Register() {
 
   return (
     <div>
-      <h3>Input form</h3>
+      <h3>Register form</h3>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
       >
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            placeholder={user.username}
-            onKeyUp={(e) => usernameChange(e.target.value)}
-            onKeyDown={(e) => usernameChange(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            placeholder={user.password}
-            onKeyUp={(e) => passwordChange(e.target.value)}
-            onKeyDown={(e) => passwordChange(e.target.value)}
-          />
-        </label>
+        <label>Username:</label>
+        <input
+          type="text"
+          name="username"
+          placeholder={user.username}
+          onKeyUp={(e) => usernameChange(e.target.value)}
+          onKeyDown={(e) => usernameChange(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
+          type="password"
+          name="password"
+          placeholder={user.password}
+          onKeyUp={(e) => passwordChange(e.target.value)}
+          onKeyDown={(e) => passwordChange(e.target.value)}
+        />
+        <hr className="hr-invisible" />
         <input type="submit" value="Submit" />
       </form>
-      <hr className="hr-invisible" />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import { React, useState } from "react";
-import { Container, Col, Row, Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
-import "./Login.css";
+import { Container } from "react-bootstrap";
+import "../Users.css";
 
 function Login() {
   const [user, setUser] = useState({});
@@ -34,29 +33,31 @@ function Login() {
 
   return (
     <Container className="login">
-      <Row>
-        <h2>Login page</h2>
-      </Row>
-      <Row>
-        <Col>
-          <label>Username</label>
-        </Col>
-        <input onChange={(e) => setUsername(e.target.value)}></input>
-      </Row>
-      <Row>
-        <Col>
-          <label>Password</label>
-        </Col>
+      <h3>Login form</h3>
+      <form
+        onSubmit={(e) => {
+          HandleSubmit(e);
+        }}
+      >
+        <label>Username:</label>
         <input
-          onChange={(e) => setPassword(e.target.value)}
+          type="text"
+          name="username"
+          placeholder={user.username}
+          onKeyUp={(e) => setUsername(e.target.value)}
+          onKeyDown={(e) => setUsername(e.target.value)}
+        />
+        <label>Password:</label>
+        <input
           type="password"
-        ></input>
-      </Row>
-      <Row>
-        <Col>
-          <Button onClick={HandleSubmit}>Submit</Button>
-        </Col>
-      </Row>
+          name="password"
+          placeholder={user.password}
+          onKeyUp={(e) => setPassword(e.target.value)}
+          onKeyDown={(e) => setPassword(e.target.value)}
+        />
+        <hr className="hr-invisible" />
+        <input type="submit" value="Submit" />
+      </form>
     </Container>
   );
 }
