@@ -142,93 +142,99 @@ function Search() {
       {isLoading && <p>Loading...</p>}
       <Container className="list-zone" fluid>
         <Row>
-          <Col xs={3} md={4} className="filters-zone">
+          <Col md={5} className="filters-zone">
             <Button className="reset-button resetFiltersTag">
               Reset filters
             </Button>
-            <h2>Search by:</h2>
             <Row>
-              <Col md={3}>
-                <Container className="filterTag">Brand:</Container>
+              <Col md={1}>
+                <span className="filterTag">Brand</span>
                 <input
                   type="text"
                   id="brand-search"
                   placeholder="Brand"
+                  className="filter-input"
                   name="keyword"
                   onChange={(e) => setBrandFilter(e.target.value)}
                 />
               </Col>
-              <Col md={{ span: 3, offset: 3 }}>
-                <Container className="filterTag">Color:</Container>
+              <Col md={{ span: 1, offset: 5 }}>
+                <span className="filterTag">Color</span>
                 <input
                   type="text"
                   id="color-search"
                   placeholder="Color"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setColorFilter(e.target.value)}
                 />
               </Col>
-              <hr />
+              <hr className="hr-invisible"/>
             </Row>
             <Row>
-              <Col md={3}>
-                <Container className="filterTag">Model:</Container>
+              <Col md={1}>
+                <span className="filterTag">Model</span>
                 <input
                   type="text"
                   id="model-search"
                   placeholder="Model"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setModelFilter(e.target.value)}
                 />
               </Col>
-              <Col md={{ span: 3, offset: 3 }}>
-                <Container className="filterTag">Combustible:</Container>
+              <Col md={{ span: 1, offset: 5 }}>
+                <span className="filterTag">Combustible</span>
                 <input
                   type="text"
                   id="combustible-search"
                   placeholder="Combustible"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setCombustibleFilter(e.target.value)}
                 />
               </Col>
-              <hr />
+              <hr className="hr-invisible"/>
             </Row>
-            <Container>
-              <Row>
-                <Container className="filterTag">Body:</Container>
+            <Row>
+              <Col md={1}>
+                <span className="filterTag">Body</span>
                 <input
                   type="text"
                   id="body-search"
                   placeholder="Body"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setBodyFilter(e.target.value)}
                 />
-                <hr />
-              </Row>
-            </Container>
+              </Col>
+              <hr className="hr-invisible"/>
+            </Row>
             <Row>
-              <Col md={3}>
-                <Container className="filterTag">Doors:</Container>
+              <Col md={1}>
+                <span className="filterTag">Doors</span>
                 <input
                   type="number"
                   id="numberDoors-search"
                   placeholder="Number doors"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setNumberDoorsFilter(e.target.value)}
                 />
               </Col>
-              <Col md={{ span: 3, offset: 3 }}>
-                <Container className="filterTag">Volume:</Container>
+              <Col md={{ span: 1, offset: 5 }}>
+                <span className="filterTag">Volume</span>
                 <input
                   type="number"
                   id="cargoVolume-search"
                   placeholder="Cargo volume"
                   name="keyword"
+                  className="filter-input"
                   onChange={(e) => setCargoVolumeFilter(e.target.value)}
                 />
               </Col>
 
-              <hr />
+              <hr className="hr-invisible"/>
             </Row>
             <Row>
               <Container fluid>
@@ -238,25 +244,32 @@ function Search() {
               </Container>
             </Row>
           </Col>
-          <Col xs={9} md={8}>
+          <Col>
             <Row>
-              <p style={{ textAlign: "left" }}>
-                {totalElements} matching results
-              </p>
-              {carsList.length !== 0 ? (
-                carsList.map((c, index) => (
-                  <Col md={3} key={index} className="car-item">
-                    <CarContainer car={c} />
-                  </Col>
-                ))
-              ) : (
-                <h3>No cars documented</h3>
-              )}
+              <h2>Image zone</h2>
             </Row>
           </Col>
         </Row>
       </Container>
-      <hr />
+      <Container>
+        <Col>
+          <Row>
+            <p style={{ textAlign: "left" }}>
+              {totalElements} matching results
+            </p>
+            {carsList.length !== 0 ? (
+              carsList.map((c, index) => (
+                <Col md={3} key={index} className="car-item">
+                  <CarContainer car={c} />
+                </Col>
+              ))
+            ) : (
+              <h3>No cars documented</h3>
+            )}
+          </Row>
+        </Col>
+      </Container>
+      <hr className="hr-invisible"/>
       <span>
         <Button onClick={() => prevPage()}>Prev..</Button>
         <span>{currentPage}</span>
