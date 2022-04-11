@@ -58,6 +58,7 @@ function Register() {
           onKeyUp={(e) => usernameChange(e.target.value)}
           onKeyDown={(e) => usernameChange(e.target.value)}
         />
+        <hr className="hr-invisible" />
         <label>Password:</label>
         <input
           type="password"

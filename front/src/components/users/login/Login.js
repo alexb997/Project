@@ -47,6 +47,7 @@ function Login() {
           onKeyUp={(e) => setUsername(e.target.value)}
           onKeyDown={(e) => setUsername(e.target.value)}
         />
+        <hr className="hr-invisible" />
         <label>Password:</label>
         <input
           type="password"

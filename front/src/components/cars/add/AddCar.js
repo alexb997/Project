@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../Cars.css";
 
 const AddCar = () => {
   const [car, setCar] = useState({});
@@ -116,6 +117,7 @@ const AddCar = () => {
             onChange={(e) => setCargoVolume(e.target.value)}
           />
         </label>
+        <hr className="hr-invisible" />
         <input type="submit" value="Submit" />
       </form>
     </div>
