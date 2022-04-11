@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "../Users.css";
 
 function Register() {
   const [user, setUser] = useState({});

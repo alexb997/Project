@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import { Container } from "react-bootstrap";
-import "../Users.css";
 
 function Login() {
   const [user, setUser] = useState({});
