@@ -143,9 +143,14 @@ function Search() {
       <Container className="list-zone" fluid>
         <Row>
           <Col md={5} className="filters-zone">
-            <Button className="reset-button resetFiltersTag">
-              Reset filters
-            </Button>
+            <Row>
+              <hr className="hr-invisible" />
+              <Col>
+                <Button className="reset-button resetFiltersTag">
+                  Reset filters
+                </Button>
+              </Col>
+            </Row>
             <Row>
               <Col md={1}>
                 <span className="filterTag">Brand</span>
@@ -169,7 +174,7 @@ function Search() {
                   onChange={(e) => setColorFilter(e.target.value)}
                 />
               </Col>
-              <hr className="hr-invisible"/>
+              <hr className="hr-invisible" />
             </Row>
             <Row>
               <Col md={1}>
@@ -194,7 +199,7 @@ function Search() {
                   onChange={(e) => setCombustibleFilter(e.target.value)}
                 />
               </Col>
-              <hr className="hr-invisible"/>
+              <hr className="hr-invisible" />
             </Row>
             <Row>
               <Col md={1}>
@@ -208,7 +213,7 @@ function Search() {
                   onChange={(e) => setBodyFilter(e.target.value)}
                 />
               </Col>
-              <hr className="hr-invisible"/>
+              <hr className="hr-invisible" />
             </Row>
             <Row>
               <Col md={1}>
@@ -234,7 +239,7 @@ function Search() {
                 />
               </Col>
 
-              <hr className="hr-invisible"/>
+              <hr className="hr-invisible" />
             </Row>
             <Row>
               <Container fluid>
@@ -242,6 +247,7 @@ function Search() {
                   Search
                 </Button>
               </Container>
+              <hr className="hr-invisible" />
             </Row>
           </Col>
           <Col>
@@ -269,7 +275,7 @@ function Search() {
           </Row>
         </Col>
       </Container>
-      <hr className="hr-invisible"/>
+      <hr className="hr-invisible" />
       <span>
         <Button onClick={() => prevPage()}>Prev..</Button>
         <span>{currentPage}</span>
