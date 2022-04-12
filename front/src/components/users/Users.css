@@ -6,11 +6,10 @@ form {
     justify-content: space-around;
   }
  
-  input[type="text"], input[type="password"]{
+  input[type="text"], input[type="number"], input[type="password"]{
     background-color: whitesmoke;
     border-radius: 2%;
     box-sizing: border-box;
-    width: 100%;
   }:focus{
     outline: 0;
     border-bottom: 2px solid blue;
@@ -27,12 +26,3 @@ form {
     text-align: left;
   }
   
-  .choices{
-    width: 50%;
-    border: none;
-    background-color: white;
-    color: #00aeef;
-  }:active{
-    border-bottom: 1px solid blue;
-    color: blue;
-  }

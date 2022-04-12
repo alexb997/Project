@@ -146,7 +146,10 @@ function Search() {
             <Row>
               <hr className="hr-invisible" />
               <Col>
-                <Button className="reset-button resetFiltersTag">
+                <Button
+                  onClick={handleResetFilters}
+                  className="reset-button resetFiltersTag"
+                >
                   Reset filters
                 </Button>
               </Col>
@@ -252,7 +255,12 @@ function Search() {
           </Col>
           <Col>
             <Row>
-              <h2>Image zone</h2>
+              <h2>Oferta zilei</h2>
+              {carsList.slice(0, 1).map((c, index) => (
+                <Col md={7} key={index} className="car-item">
+                  <CarContainer car={c} />
+                </Col>
+              ))}
             </Row>
           </Col>
         </Row>
