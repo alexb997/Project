@@ -16,12 +16,23 @@ form {
     border-bottom: 2px solid blue;
   }
   input[type="submit"]{
-    outline: 1px solid blue;
-    background-color: whitesmoke;
+    outline: 1px solid #00aeef;
+    background-color: blue;
+    color: white;
   }
  
   label {
     color: #3d3d3d;
     display: block;
     text-align: left;
+  }
+  
+  .choices{
+    width: 50%;
+    border: none;
+    background-color: white;
+    color: #00aeef;
+  }:active{
+    border-bottom: 1px solid blue;
+    color: blue;
   }

@@ -1,21 +1,24 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Button } from "bootstrap";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 function CarContainer(props) {
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
   return (
-    <div>
-      <Container className="card-bloc">
-        <Row>
-          <Col>
-            <h4>Brand: {Capitalize(props.car.brand)}</h4>
-          </Col>
-        </Row>
-        <Row>
+    <Card className="card-bloc">
+      <Card.Img
+        variant="top"
+        src="https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+      />
+      <Card.Body>
+        <Card.Title>
+          <Row>
+            {Capitalize(props.car.model)} {Capitalize(props.car.color)}
+          </Row>
+        </Card.Title>
+        <Card.Text>
           <Col className="info-column">
-            <Row>Model: {Capitalize(props.car.model)}</Row>
-            <Row>Color: {Capitalize(props.car.color)}</Row>
             <Row>Combustible: {Capitalize(props.car.color)}</Row>
             <Row>Body: {Capitalize(props.car.body)}</Row>
             <Row>Number of doors: {props.car.numberDoors}</Row>
@@ -24,9 +27,9 @@ function CarContainer(props) {
               {/*m<sup>3</sup> -- doesn't work as intended*/}
             </Row>
           </Col>
-        </Row>
-      </Container>
-    </div>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 }
 

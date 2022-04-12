@@ -11,11 +11,13 @@ function Authentification() {
   return (
     <Container>
       <Row className="justify-content-center">
-        <Col sm={1} offset={6}>
-          <Button onClick={() => setLogin(true)}>Login</Button>
-        </Col>
-        <Col sm={1}>
-          <Button onClick={() => setLogin(false)}>Register</Button>
+        <Col sm={5} offset={6}>
+          <button className="choices" onClick={() => setLogin(true)}>
+            Login
+          </button>
+          <button className="choices" onClick={() => setLogin(false)}>
+            Register
+          </button>
         </Col>
       </Row>
       {login ? <Login /> : <Register />}
