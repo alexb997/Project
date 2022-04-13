@@ -8,71 +8,77 @@ function Footer() {
       <Container>
         <Row className="justify-content-center">
           <Col>
-            <strong>
-              <Row>Ne gasesti pe</Row>
-            </strong>
-            <Row>Facebook</Row>
-            <Row>YouTube</Row>
+            <b>
+              <Row className="mb-2">Ne gasesti pe</Row>
+            </b>
+            <Row className="smallFont mb-2">Facebook</Row>
+            <Row className="smallFont mb-2">YouTube</Row>
           </Col>
           <Col>
-            <strong>
-              <Row>SECTIUNI AUTOVIT.RO</Row>
-            </strong>
-            <Row>Autoturisme</Row>
-            <Row>Agro</Row>
-            <Row>Autoutilitare</Row>
-            <Row>Camioane</Row>
-            <Row>Constructii</Row>
-            <Row>Motociclete</Row>
-            <Row>Piese</Row>
-            <Row>Remorci</Row>
+            <b>
+              <Row className="mb-2">SECTIUNI AUTOVIT.RO</Row>
+            </b>
+            <Row className="smallFont mb-2">Autoturisme</Row>
+            <Row className="smallFont mb-2">Agro</Row>
+            <Row className="smallFont mb-2">Autoutilitare</Row>
+            <Row className="smallFont mb-2">Camioane</Row>
+            <Row className="smallFont mb-2">Constructii</Row>
+            <Row className="smallFont mb-2">Motociclete</Row>
+            <Row className="smallFont mb-2">Piese</Row>
+            <Row className="smallFont mb-2">Remorci</Row>
           </Col>
           <Col>
-            <strong>
-              <Row>AUTOVIT</Row>
-            </strong>
-            <Row>Blog</Row>
-            <Row>Ajutor</Row>
-            <Row>Trimite mesaj</Row>
-            <Row>Publicitate</Row>
-            <Row>Politica de confidentialitate</Row>
-            <Row>Politica de cookies</Row>
-            <Row>Setari Cookies</Row>
-            <Row>Regulament persoane fizice</Row>
-            <Row>Regulament profesionisti</Row>
+            <b>
+              <Row className="mb-2">AUTOVIT</Row>
+            </b>
+            <Row className="smallFont mb-2">Blog</Row>
+            <Row className="smallFont mb-2">Ajutor</Row>
+            <Row className="smallFont mb-2">Trimite mesaj</Row>
+            <Row className="smallFont mb-2">Publicitate</Row>
+            <Row className="smallFont mb-2">Politica de confidentialitate</Row>
+            <Row className="smallFont mb-2">Politica de cookies</Row>
+            <Row className="smallFont mb-2">Setari Cookies</Row>
+            <Row className="smallFont mb-2">Regulament persoane fizice</Row>
+            <Row className="smallFont mb-2">Regulament profesionisti</Row>
           </Col>
           <Col>
-            <strong>
-              <Row>INFORMATII UTILE</Row>
-            </strong>
-            <Row>Lista de preturi persone fizice</Row>
-            <Row>Lista de preturi profesionisti</Row>
-            <Row>Harta site</Row>
-            <Row>Harta judetelor</Row>
-            <Row>Contract vanzare cumparare</Row>
+            <b>
+              <Row className="mb-2">INFORMATII UTILE</Row>
+            </b>
+            <Row className="smallFont mb-2">
+              Lista de preturi persone fizice
+            </Row>
+            <Row className="smallFont mb-2">Lista de preturi profesionisti</Row>
+            <Row className="smallFont mb-2">Harta site</Row>
+            <Row className="smallFont mb-2">Harta judetelor</Row>
+            <Row className="smallFont mb-2">Contract vanzare cumparare</Row>
           </Col>
         </Row>
         <hr className="hr-invisible" />
         <Row className="justify-content-center">
           <Col sm={3}>
-            <strong>
-              <Row>Cariere in OLX/Autovit</Row>
-            </strong>
-            <Row>Vino sa lucrezi cu noi!</Row>
-            <Row>Cautati oferte de munca</Row>
+            <b>
+              <Row className="mb-2">Cariere in OLX/Autovit</Row>
+            </b>
+            <Row className="smallFont mb-2">Vino sa lucrezi cu noi!</Row>
+            <Row className="smallFont mb-2">Cautati oferte de munca</Row>
           </Col>
           <Col sm={3}>
             <strong>
-              <Row>Customer support</Row>
+              <Row className="mb-2">Customer support</Row>
             </strong>
-            <Row>(031) 860 90 90</Row>
-            <Row>(de Luni pana Vineri intre 09:00 - 18:00)</Row>
+            <b>
+              <Row className="smallFont">(031) 860 90 90</Row>
+              <Row className="smallFont">
+                (de Luni pana Vineri intre 09:00 - 18:00)
+              </Row>
+            </b>
           </Col>
         </Row>
       </Container>
       <hr />
       <Container>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center mb-2">
           Incearca acum aplicatia Autovit.ro
         </Row>
         <Row className="justify-content-center">
