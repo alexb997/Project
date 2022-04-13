@@ -3,16 +3,19 @@ import "./App.css";
 import AppRouter from "./routes/Router";
 import { Container } from "react-bootstrap";
 import NavBar from "./components/navbar/NavBar";
+import Footer from "./components/footer/Footer";
 
 function App() {
   return (
-    <Container className="App" fluid>
+    <div className="App">
       <NavBar />
       <hr className="hr-invisible" />
       <hr className="hr-invisible" />
       <hr className="hr-invisible" />
       <AppRouter />
-    </Container>
+      <hr className="hr-invisible" />
+      <Footer />
+    </div>
   );
 }
 

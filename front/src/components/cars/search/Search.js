@@ -142,7 +142,7 @@ function Search() {
       {isLoading && <p>Loading...</p>}
       <Container className="list-zone" fluid>
         <Row>
-          <Col md={5} className="filters-zone">
+          <Col md={6} className="filters-zone">
             <Row>
               <hr className="hr-invisible" />
               <Col>
@@ -253,11 +253,10 @@ function Search() {
               <hr className="hr-invisible" />
             </Row>
           </Col>
-          <Col>
+          <Col md={6}>
             <Row>
-              <h2>Oferta zilei</h2>
               {carsList.slice(0, 1).map((c, index) => (
-                <Col md={7} key={index} className="car-item">
+                <Col key={index} className="car-item">
                   <CarContainer car={c} />
                 </Col>
               ))}
