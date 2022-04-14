@@ -12,8 +12,16 @@
     cursor:pointer;
 }
 .filters-zone{
+    background-color: white;
     border-radius: 1%;
     box-shadow: rgba(170, 167, 167, 0.12) 0px 11px 12px,
     rgba(170, 167, 167, 0.12) 0px -6px 15px, rgba(170, 167, 167, 0.12) 0px 2px 3px,
     rgba(170, 167, 167, 0.12) 0px 6px 6px, rgba(170, 167, 167, 0.12) 0px -1px 3px;
+}
+
+.search-cars{
+    padding-top: 1%;
+    padding-bottom: 2%;
+    background-image: url(https://cdn.slots.baxter.olx.org/autovit/_assets/image/NewCars_DESTKOP_13_15MAI22.jpg);
+    background-size: cover;
 }

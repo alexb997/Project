@@ -8,16 +8,14 @@ import Authentification from "../components/users/authentification/Authentificat
 
 function AppRouter() {
   return (
-    <Container>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Search />} />
-          <Route path="/car/add" element={<AddCar />} />
-          {/* <Route path="/car/edit/:id" element={<EditCar />} /> */}
-          <Route path="/authentification" element={<Authentification />} />
-        </Routes>
-      </Router>
-    </Container>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Search />} />
+        <Route path="/car/add" element={<AddCar />} />
+        {/* <Route path="/car/edit/:id" element={<EditCar />} /> */}
+        <Route path="/authentification" element={<Authentification />} />
+      </Routes>
+    </Router>
   );
 }
 

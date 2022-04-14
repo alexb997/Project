@@ -31,3 +31,7 @@ form {
     rgba(170, 167, 167, 0.12) 0px -6px 15px, rgba(170, 167, 167, 0.12) 0px 2px 3px,
     rgba(170, 167, 167, 0.12) 0px 6px 6px, rgba(170, 167, 167, 0.12) 0px -1px 3px;
   }
+
+  .section-filters{
+    background-image: url(https://cdn.slots.baxter.olx.org/autovit/_assets/image/NewCars_DESTKOP_13_15MAI22.jpg);
+  }
