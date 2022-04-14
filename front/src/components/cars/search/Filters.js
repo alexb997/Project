@@ -1,5 +1,6 @@
 import { Col, Row, Button, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
+import { Navigate, Redirect } from "react-router-dom";
 
 function Filters() {
   const [isLoading, setIsLoading] = useState(true);
@@ -90,9 +91,23 @@ function Filters() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setCarsList(data.items);
-        setTotalPages(data.totalPages ? data.totalPages : 0);
-        setTotalElements(data.totalItems ? data.totalItems : 0);
+        return (
+          <Navigate
+            to={{
+              pathname: "/test/new",
+              state: {
+                bodyFilter: bodyFilter,
+                combustibleFilter: combustibleFilter,
+                modelFilter: modelFilter,
+                brandFilter: brandFilter,
+                colorFilter: colorFilter,
+                cargoVolumeFilter: cargoVolumeFilter,
+                numberDoorsFilter: numberDoorsFilter,
+                data: data,
+              },
+            }}
+          />
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -105,33 +120,6 @@ function Filters() {
     setColorFilter("");
     setCargoVolumeFilter(0);
     setNumberDoorsFilter(0);
-    fetch(
-      "http://localhost:8080/cars/filter?brand=" +
-        brandFilter +
-        "&color=" +
-        colorFilter +
-        "&body=" +
-        bodyFilter +
-        "&combustible=" +
-        combustibleFilter +
-        "&cargoVolume=" +
-        cargoVolumeFilter +
-        "&model=" +
-        modelFilter +
-        "&numberDoors=" +
-        numberDoorsFilter +
-        "&page=" +
-        (currentPage - 1) +
-        "&size=" +
-        carsPerPage
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setCarsList(data.items);
-        setTotalPages(data.totalPages ? data.totalPages : 0);
-        setTotalElements(data.totalItems ? data.totalItems : 0);
-      })
-      .catch((err) => console.log(err));
   };
 
   return (
