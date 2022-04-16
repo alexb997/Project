@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
+import ResultsContainer from "../ResultsContainer";
+
 function Results(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [carsList, setCarsList] = useState([]);
@@ -144,6 +146,7 @@ function Results(props) {
         <Row>
           Lista masini rezultate - trebuie container special, sau poate editez
           originalul
+          <ResultsContainer />
         </Row>
       </Container>
     </div>
