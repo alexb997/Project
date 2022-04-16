@@ -8,6 +8,11 @@
 .filter-input{
     border-radius: 10%;
 }
+.filter-results-input{
+    border: none;
+    border-radius: 10%;
+    height: 3rem;
+}
 .reset-button{
     cursor:pointer;
 }
@@ -24,4 +29,7 @@
     padding-bottom: 2%;
     background-image: url(https://cdn.slots.baxter.olx.org/autovit/_assets/image/NewCars_DESTKOP_13_15MAI22.jpg);
     background-size: cover;
+}
+.filters-results{
+    background-color: rgba(138, 136, 136, 0.322);
 }

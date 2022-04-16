@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 function Results(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -52,7 +53,101 @@ function Results(props) {
       })
       .catch((err) => console.log(err));
   };
-  return <div>Page in work, redirect not in React-dom-route</div>;
+  return (
+    <div>
+      <Container className="filters-results" fluid>
+        <hr className="hr-invisible" />
+        <hr className="hr-invisible" />
+        <Row>
+          <Col md={2}>
+            <input
+              type="text"
+              id="brand-search"
+              placeholder="Brand"
+              className="filter-results-input"
+              name="keyword"
+              onChange={(e) => setBrandFilter(e.target.value)}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="text"
+              id="color-search"
+              placeholder="Color"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setColorFilter(e.target.value)}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="text"
+              id="model-search"
+              placeholder="Model"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setModelFilter(e.target.value)}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="text"
+              id="combustible-search"
+              placeholder="Combustible"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setCombustibleFilter(e.target.value)}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="text"
+              id="body-search"
+              placeholder="Body"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setBodyFilter(e.target.value)}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="number"
+              id="numberDoors-search"
+              placeholder="Number doors"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setNumberDoorsFilter(e.target.value)}
+            />
+          </Col>
+        </Row>
+        <hr className="hr-invisible" />
+        <Row>
+          <Col md={2}>
+            <input
+              type="number"
+              id="cargoVolume-search"
+              placeholder="Cargo volume"
+              name="keyword"
+              className="filter-results-input"
+              onChange={(e) => setCargoVolumeFilter(e.target.value)}
+            />
+          </Col>
+          <hr className="hr-invisible" />
+          <hr className="hr-invisible" />
+        </Row>
+      </Container>
+      <Container>
+        <Row className="justify-content: {spread-around}">
+          Autoturisme - n anunturi
+        </Row>
+        <hr className="hr-invisible" />
+        <Row>
+          Lista masini rezultate - trebuie container special, sau poate editez
+          originalul
+        </Row>
+      </Container>
+    </div>
+  );
 }
 
 export default Results;

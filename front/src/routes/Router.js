@@ -13,10 +13,7 @@ function AppRouter() {
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="/car/add" element={<AddCar />} />
-        <Route
-          path="/cars/filtered"
-          render={(props) => <Results {...props} />}
-        />
+        <Route path="/cars/filtered" element={<Results />} />
         {/* <Route path="/car/edit/:id" element={<EditCar />} /> */}
         <Route path="/authentification" element={<Authentification />} />
       </Routes>
