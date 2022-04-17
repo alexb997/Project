@@ -19,6 +19,38 @@ function Results(props) {
   const [cargoVolumeFilter, setCargoVolumeFilter] = useState(0);
   const [numberDoorsFilter, setNumberDoorsFilter] = useState(0);
 
+  useEffect(async () => {
+    await fetch(
+      "http://localhost:8080/cars/filter?brand=" +
+        brandFilter +
+        "&color=" +
+        colorFilter +
+        "&body=" +
+        bodyFilter +
+        "&combustible=" +
+        combustibleFilter +
+        "&cargoVolume=" +
+        cargoVolumeFilter +
+        "&model=" +
+        modelFilter +
+        "&numberDoors=" +
+        numberDoorsFilter +
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        carsPerPage
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLoading(false);
+        setCarsList(data.items);
+        setTotalPages(data.totalPages ? data.totalPages : 0);
+        setTotalElements(data.totalItems ? data.totalItems : 0);
+        setIsUpdating(false);
+      })
+      .catch((err) => console.log(err));
+  }, [isUpdating]);
+
   const handleResetFilters = () => {
     setBodyFilter("");
     setCombustibleFilter("");
@@ -49,12 +81,45 @@ function Results(props) {
     )
       .then((response) => response.json())
       .then((data) => {
+        setIsLoading(false);
+        setCarsList(data.items);
+        setTotalPages(data.totalPages ? data.totalPages : 0);
+        setTotalElements(data.totalItems ? data.totalItems : 0);
+        setIsUpdating(false);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleChange = () => {
+    fetch(
+      "http://localhost:8080/cars/filter?brand=" +
+        brandFilter +
+        "&color=" +
+        colorFilter +
+        "&body=" +
+        bodyFilter +
+        "&combustible=" +
+        combustibleFilter +
+        "&cargoVolume=" +
+        cargoVolumeFilter +
+        "&model=" +
+        modelFilter +
+        "&numberDoors=" +
+        numberDoorsFilter +
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        carsPerPage
+    )
+      .then((response) => response.json())
+      .then((data) => {
         setCarsList(data.items);
         setTotalPages(data.totalPages ? data.totalPages : 0);
         setTotalElements(data.totalItems ? data.totalItems : 0);
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <div>
       <Container className="filters-results" fluid>
@@ -68,7 +133,10 @@ function Results(props) {
               placeholder="Brand"
               className="filter-results-input"
               name="keyword"
-              onChange={(e) => setBrandFilter(e.target.value)}
+              onChange={(e) => {
+                setBrandFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <Col md={2}>
@@ -78,7 +146,10 @@ function Results(props) {
               placeholder="Color"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setColorFilter(e.target.value)}
+              onChange={(e) => {
+                setColorFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <Col md={2}>
@@ -88,7 +159,10 @@ function Results(props) {
               placeholder="Model"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setModelFilter(e.target.value)}
+              onChange={(e) => {
+                setModelFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <Col md={2}>
@@ -98,7 +172,10 @@ function Results(props) {
               placeholder="Combustible"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setCombustibleFilter(e.target.value)}
+              onChange={(e) => {
+                setCombustibleFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <Col md={2}>
@@ -108,7 +185,10 @@ function Results(props) {
               placeholder="Body"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setBodyFilter(e.target.value)}
+              onChange={(e) => {
+                setBodyFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <Col md={2}>
@@ -118,7 +198,10 @@ function Results(props) {
               placeholder="Number doors"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setNumberDoorsFilter(e.target.value)}
+              onChange={(e) => {
+                setNumberDoorsFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
         </Row>
@@ -131,7 +214,10 @@ function Results(props) {
               placeholder="Cargo volume"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => setCargoVolumeFilter(e.target.value)}
+              onChange={(e) => {
+                setCargoVolumeFilter(e.target.value);
+                handleChange();
+              }}
             />
           </Col>
           <hr className="hr-invisible" />
@@ -139,14 +225,17 @@ function Results(props) {
         </Row>
       </Container>
       <Container>
-        <Row className="justify-content: {spread-around}">
-          Autoturisme - n anunturi
+        {isLoading && <p>Loading...</p>}
+        <Row className="justify-content-around">
+          Autoturisme - {totalElements} anunturi
         </Row>
         <hr className="hr-invisible" />
         <Row>
-          Lista masini rezultate - trebuie container special, sau poate editez
-          originalul
-          <ResultsContainer />
+          {carsList.length !== 0 ? (
+            carsList.map((c, index) => <ResultsContainer car={c} key={index} />)
+          ) : (
+            <h3>No cars documented</h3>
+          )}
         </Row>
       </Container>
     </div>

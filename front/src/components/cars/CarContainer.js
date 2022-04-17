@@ -19,7 +19,7 @@ function CarContainer(props) {
         </Card.Title>
         <Card.Text>
           <Col className="info-column">
-            <Row>Combustible: {Capitalize(props.car.color)}</Row>
+            <Row>Combustible: {Capitalize(props.car.combustible)}</Row>
             <Row>Body: {Capitalize(props.car.body)}</Row>
             <Row>Number of doors: {props.car.numberDoors}</Row>
             <Row>

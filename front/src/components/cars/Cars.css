@@ -35,3 +35,7 @@ form {
   .section-filters{
     background-image: url(https://cdn.slots.baxter.olx.org/autovit/_assets/image/NewCars_DESTKOP_13_15MAI22.jpg);
   }
+
+  .image-fit{
+    width: 100%;
+  }
