@@ -133,8 +133,12 @@ function Results(props) {
               placeholder="Brand"
               className="filter-results-input"
               name="keyword"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setBrandFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -146,8 +150,12 @@ function Results(props) {
               placeholder="Color"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setColorFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -159,8 +167,12 @@ function Results(props) {
               placeholder="Model"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setModelFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -172,7 +184,11 @@ function Results(props) {
               placeholder="Combustible"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
+                setCombustibleFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
                 setCombustibleFilter(e.target.value);
                 handleChange();
               }}
@@ -185,8 +201,12 @@ function Results(props) {
               placeholder="Body"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setBodyFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -198,8 +218,12 @@ function Results(props) {
               placeholder="Number doors"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setNumberDoorsFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -214,8 +238,12 @@ function Results(props) {
               placeholder="Cargo volume"
               name="keyword"
               className="filter-results-input"
-              onChange={(e) => {
+              onKeyUp={(e) => {
                 setCargoVolumeFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setCombustibleFilter(e.target.value);
                 handleChange();
               }}
             />
