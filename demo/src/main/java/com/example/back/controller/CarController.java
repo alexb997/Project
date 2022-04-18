@@ -64,6 +64,7 @@ public class CarController {
             newCar.setNumberDoors(car.getNumberDoors());
             newCar.setCargoVolume(car.getCargoVolume());
             newCar.setModel(car.getModel());
+            newCar.setPrice(car.getPrice());
             return new ResponseEntity<>(carService.editCar(newCar), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

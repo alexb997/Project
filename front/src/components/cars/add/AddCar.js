@@ -8,6 +8,7 @@ const AddCar = () => {
   const [color, setColor] = useState("");
   const [body, setBody] = useState("");
   const [combustible, setCombustible] = useState("");
+  const [price, setPrice] = useState(0);
   const [cargoVolume, setCargoVolume] = useState(0);
   const [numberDoors, setNumberDoors] = useState(0);
 
@@ -20,6 +21,7 @@ const AddCar = () => {
       combustible: combustible,
       cargoVolume: cargoVolume,
       numberDoors: numberDoors,
+      price: price,
     });
   }, []);
 
@@ -38,6 +40,7 @@ const AddCar = () => {
         combustible: combustible,
         cargoVolume: cargoVolume,
         numberDoors: numberDoors,
+        price: price,
       }),
     };
     fetch("http://localhost:8080/cars/add/", requestOptions)
@@ -60,6 +63,15 @@ const AddCar = () => {
             name="model"
             placeholder={car.model}
             onChange={(e) => setModel(e.target.value)}
+          />
+        </label>
+        <label>
+          Price:
+          <input
+            type="number"
+            name="price"
+            placeholder={car.price}
+            onChange={(e) => setPrice(e.target.value)}
           />
         </label>
         <label>

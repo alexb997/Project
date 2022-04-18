@@ -252,7 +252,7 @@ function Results(props) {
           <hr className="hr-invisible" />
         </Row>
       </Container>
-      <Container>
+      <Container fluid>
         {isLoading && <p>Loading...</p>}
         <Row className="justify-content-around">
           Autoturisme - {totalElements} anunturi

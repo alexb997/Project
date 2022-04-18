@@ -22,10 +22,8 @@ function CarContainer(props) {
             <Row>Combustible: {Capitalize(props.car.combustible)}</Row>
             <Row>Body: {Capitalize(props.car.body)}</Row>
             <Row>Number of doors: {props.car.numberDoors}</Row>
-            <Row>
-              Cargo volume: {props.car.cargoVolume}
-              {/*m<sup>3</sup> -- doesn't work as intended*/}
-            </Row>
+            <Row>Cargo volume: {props.car.cargoVolume}</Row>
+            <Row>Price: {props.car.price}</Row>
           </Col>
         </Card.Text>
       </Card.Body>

@@ -31,11 +31,6 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public Page<Car> filterCars(Map<String,String> allParams,Pageable pageable){
-
-        return null;
-    }
-
     public Page<Car> allCars(Pageable pageable){
         return carRepository.findAll(pageable);
     }

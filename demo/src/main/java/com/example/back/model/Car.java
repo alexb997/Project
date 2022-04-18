@@ -14,17 +14,19 @@ public class Car {
     private String color;
     private String model;
     private String body;
+    private int price;
     private int numberDoors;
     private String combustible;
     private int cargoVolume;
 
     public Car(){}
 
-    public Car(String brand, String color, String model, String body, int numberDoors, String combustible, int cargoVolume) {
+    public Car(String brand, String color, String model, String body, int price, int numberDoors, String combustible, int cargoVolume) {
         this.brand = brand;
         this.color = color;
         this.model = model;
         this.body = body;
+        this.price = price;
         this.numberDoors = numberDoors;
         this.combustible = combustible;
         this.cargoVolume = cargoVolume;
@@ -70,6 +72,14 @@ public class Car {
         return numberDoors;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     public void setNumberDoors(int numberDoors) {
         this.numberDoors = numberDoors;
     }
@@ -97,6 +107,7 @@ public class Car {
                 ", color='" + color + '\'' +
                 ", model='" + model + '\'' +
                 ", body='" + body + '\'' +
+                ", price=" + price +
                 ", numberDoors=" + numberDoors +
                 ", combustible='" + combustible + '\'' +
                 ", cargoVolume=" + cargoVolume +
