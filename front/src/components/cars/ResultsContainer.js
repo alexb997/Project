@@ -4,6 +4,19 @@ function CarContainer(props) {
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+  const confirmRemoval = (id) => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch("http://localhost:8080/cars/delete/" + id, requestOptions).then(
+      (response) => {
+        console.log(response);
+      }
+    );
+  };
   return (
     <div>
       <Container className="card-bloc" fluid>
@@ -28,7 +41,9 @@ function CarContainer(props) {
           <Col md={2}>
             <Row>Price: {props.car.price}</Row>
             <Row>
-              <Button>Favorite</Button>
+              <Button onClick={() => confirmRemoval(c.id)} variant="danger">
+                Delete
+              </Button>
             </Row>
           </Col>
         </Row>
