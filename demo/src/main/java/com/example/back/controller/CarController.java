@@ -24,6 +24,12 @@ public class CarController {
         this.carService=carService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> getCar(@PathVariable("id") String id) {
+        Optional<Car> carData = carService.findById(id);
+        return carData.map(car -> new ResponseEntity<>(car, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @GetMapping("/filter")
     public ResponseEntity<Response> filterCars(@RequestParam(required = false) Map<String,String> filterParams,
                                              @RequestParam(defaultValue = "0") int page,

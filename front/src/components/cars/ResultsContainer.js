@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function CarContainer(props) {
   function Capitalize(str) {
@@ -41,7 +42,18 @@ function CarContainer(props) {
           <Col md={2}>
             <Row>Price: {props.car.price}</Row>
             <Row>
-              <Button onClick={() => confirmRemoval(c.id)} variant="danger">
+              <Button
+                as={Link}
+                to={`/car/edit/${props.car.id}`}
+                variant="primary"
+              >
+                Edit
+              </Button>
+              <hr className="hr-invsible" />
+              <Button
+                onClick={() => confirmRemoval(props.car.id)}
+                variant="danger"
+              >
                 Delete
               </Button>
             </Row>
