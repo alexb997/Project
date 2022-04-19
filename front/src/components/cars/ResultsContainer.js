@@ -16,17 +16,17 @@ function CarContainer(props) {
           </Col>
           <Col md={6}>
             <Row>
-              {Capitalize(props.car.model)} {Capitalize(props.car.color)}
+              Model:{Capitalize(props.car.model)} Color:
+              {Capitalize(props.car.color)}
             </Row>
             <hr className="hr-invisible" />
-            <Row>{Capitalize(props.car.body)}</Row>
-            <Row>
-              {Capitalize(props.car.combustible)} {props.car.numberDoors}{" "}
-              {props.car.cargoVolume}
-            </Row>
+            <Row>Body:{Capitalize(props.car.body)}</Row>
+            <Row>Combustible: {Capitalize(props.car.combustible)} </Row>
+            <Row>Doors:{props.car.numberDoors}</Row>
+            <Row>CargoVolume: {props.car.cargoVolume}</Row>
           </Col>
           <Col md={2}>
-            <Row>{props.car.price}</Row>
+            <Row>Price: {props.car.price}</Row>
             <Row>
               <Button>Favorite</Button>
             </Row>

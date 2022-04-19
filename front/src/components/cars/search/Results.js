@@ -18,6 +18,7 @@ function Results(props) {
   const [combustibleFilter, setCombustibleFilter] = useState("");
   const [cargoVolumeFilter, setCargoVolumeFilter] = useState(0);
   const [numberDoorsFilter, setNumberDoorsFilter] = useState(0);
+  const [priceFilter, setPriceFilter] = useState(0);
 
   useEffect(async () => {
     await fetch(
@@ -35,6 +36,8 @@ function Results(props) {
         modelFilter +
         "&numberDoors=" +
         numberDoorsFilter +
+        "&price=" +
+        priceFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
@@ -74,6 +77,8 @@ function Results(props) {
         modelFilter +
         "&numberDoors=" +
         numberDoorsFilter +
+        "&price=" +
+        priceFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
@@ -106,6 +111,8 @@ function Results(props) {
         modelFilter +
         "&numberDoors=" +
         numberDoorsFilter +
+        "&price=" +
+        priceFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
@@ -138,7 +145,7 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setBrandFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -155,7 +162,7 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setColorFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -172,7 +179,7 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setModelFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -206,7 +213,7 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setBodyFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -223,7 +230,7 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setNumberDoorsFilter(e.target.value);
                 handleChange();
               }}
             />
@@ -243,7 +250,24 @@ function Results(props) {
                 handleChange();
               }}
               onKeyDown={(e) => {
-                setCombustibleFilter(e.target.value);
+                setCargoVolumeFilter(e.target.value);
+                handleChange();
+              }}
+            />
+          </Col>
+          <Col md={2}>
+            <input
+              type="number"
+              id="price-search"
+              placeholder="Price"
+              name="keyword"
+              className="filter-results-input"
+              onKeyUp={(e) => {
+                setPriceFilter(e.target.value);
+                handleChange();
+              }}
+              onKeyDown={(e) => {
+                setPriceFilter(e.target.value);
                 handleChange();
               }}
             />

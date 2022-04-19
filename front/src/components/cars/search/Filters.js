@@ -17,6 +17,7 @@ function Filters() {
   const [combustibleFilter, setCombustibleFilter] = useState("");
   const [cargoVolumeFilter, setCargoVolumeFilter] = useState(0);
   const [numberDoorsFilter, setNumberDoorsFilter] = useState(0);
+  const [priceFilter, setPriceFilter] = useState(0);
 
   useEffect(async () => {
     await fetch(
@@ -34,6 +35,8 @@ function Filters() {
         modelFilter +
         "&numberDoors=" +
         numberDoorsFilter +
+        "&price=" +
+        priceFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
@@ -84,6 +87,8 @@ function Filters() {
         modelFilter +
         "&numberDoors=" +
         numberDoorsFilter +
+        "&price=" +
+        priceFilter +
         "&page=" +
         (currentPage - 1) +
         "&size=" +
@@ -103,6 +108,7 @@ function Filters() {
                 colorFilter: colorFilter,
                 cargoVolumeFilter: cargoVolumeFilter,
                 numberDoorsFilter: numberDoorsFilter,
+                priceFilter: priceFilter,
                 data: data,
               },
             }}
@@ -120,6 +126,7 @@ function Filters() {
     setColorFilter("");
     setCargoVolumeFilter(0);
     setNumberDoorsFilter(0);
+    setPriceFilter(0);
   };
 
   return (
@@ -195,6 +202,16 @@ function Filters() {
             name="keyword"
             className="filter-input"
             onChange={(e) => setBodyFilter(e.target.value)}
+          />
+        </Col>
+        <Col md={{ span: 1, offset: 5 }}>
+          <span className="filterTag">Price</span>
+          <input
+            type="number"
+            id="price-search"
+            placeholder="Price"
+            className="filter-input"
+            onChange={(e) => setPriceFilter(e.target.value)}
           />
         </Col>
         <hr className="hr-invisible" />
