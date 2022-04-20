@@ -1,10 +1,8 @@
 form {
-    background: white;
-    border: 1px solid #dedede;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
  
   input[type="text"], input[type="number"], input[type="password"]{
     background-color: whitesmoke;

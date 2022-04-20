@@ -30,6 +30,23 @@ public class CarController {
         return carData.map(car -> new ResponseEntity<>(car, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping("/owned/{owner}")
+    public ResponseEntity<Response> getCar(@PathVariable("owner") String owner,
+                                           @RequestParam(defaultValue = "0") int page,
+                                           @RequestParam(defaultValue = "3") int size) {
+        try{
+            List<Car> cars;
+            Pageable paging = PageRequest.of(page, size);
+            Page<Car> pageCars;
+            pageCars = carService.findByOwner(owner,paging);
+            cars = pageCars.getContent();
+            Response response = new Response(cars,pageCars.getTotalPages(),pageCars.getTotalElements(),pageCars.getNumber());
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("Cars not found",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/filter")
     public ResponseEntity<Response> filterCars(@RequestParam(required = false) Map<String,String> filterParams,
                                              @RequestParam(defaultValue = "0") int page,
@@ -71,6 +88,7 @@ public class CarController {
             newCar.setCargoVolume(car.getCargoVolume());
             newCar.setModel(car.getModel());
             newCar.setPrice(car.getPrice());
+            newCar.setOwner(car.getOwner());
             return new ResponseEntity<>(carService.editCar(newCar), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

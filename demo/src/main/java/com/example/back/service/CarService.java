@@ -35,6 +35,10 @@ public class CarService {
         return carRepository.findAll(pageable);
     }
 
+    public Page<Car> findByOwner(String owner,Pageable pageable) {
+        return carRepository.findAllByOwner(owner,pageable);
+    }
+
     public Page<Car> findByFilters(Map<String,String> filters,Pageable pageable){
         String brand="";
         String color="";

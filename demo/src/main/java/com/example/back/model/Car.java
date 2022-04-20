@@ -14,14 +14,15 @@ public class Car {
     private String color;
     private String model;
     private String body;
+    private String combustible;
+    private String owner;
     private int price;
     private int numberDoors;
-    private String combustible;
     private int cargoVolume;
 
     public Car(){}
 
-    public Car(String brand, String color, String model, String body, int price, int numberDoors, String combustible, int cargoVolume) {
+    public Car(String brand, String color, String model, String body, String owner, int price, int numberDoors, String combustible, int cargoVolume) {
         this.brand = brand;
         this.color = color;
         this.model = model;
@@ -30,6 +31,7 @@ public class Car {
         this.numberDoors = numberDoors;
         this.combustible = combustible;
         this.cargoVolume = cargoVolume;
+        this.owner= owner;
     }
 
     public String getId() {
@@ -68,8 +70,12 @@ public class Car {
         this.body = body;
     }
 
-    public int getNumberDoors() {
-        return numberDoors;
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public int getPrice() {
@@ -78,6 +84,10 @@ public class Car {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getNumberDoors() {
+        return numberDoors;
     }
 
     public void setNumberDoors(int numberDoors) {
@@ -107,9 +117,10 @@ public class Car {
                 ", color='" + color + '\'' +
                 ", model='" + model + '\'' +
                 ", body='" + body + '\'' +
+                ", combustible='" + combustible + '\'' +
+                ", owner='" + owner + '\'' +
                 ", price=" + price +
                 ", numberDoors=" + numberDoors +
-                ", combustible='" + combustible + '\'' +
                 ", cargoVolume=" + cargoVolume +
                 '}';
     }
