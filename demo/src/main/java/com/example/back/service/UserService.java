@@ -22,4 +22,8 @@ public class UserService {
     public User addNewUser(User user) throws IllegalArgumentException{
         return userRepository.save(user);
     }
+
+    public Optional<User> findByUsername(String username){
+        return userRepository.findByUsername(username);
+    }
 }

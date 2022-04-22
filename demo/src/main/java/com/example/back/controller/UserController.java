@@ -1,5 +1,6 @@
 package com.example.back.controller;
 
+import com.example.back.model.Car;
 import com.example.back.model.User;
 import com.example.back.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,12 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<User> getUser(@PathVariable("username") String username) {
+        Optional<User> userData = userService.findByUsername(username);
+        return userData.map(user -> new ResponseEntity<>(user, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/login")
