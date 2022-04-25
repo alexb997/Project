@@ -1,13 +1,26 @@
 package com.example.back.model;
 
+
+import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@Document(collection = "pieces")
 public class Pieces {
 
+    @Id
+    private String id;
     private String name;
     private String model;
     private String utility;
     private String type;
     private String owner;
     private int price;
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
