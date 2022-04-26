@@ -23,4 +23,13 @@ public class PiecesService {
         return piecesRepository.save(piece);
     }
 
+    public void removeAllPieces(){
+        piecesRepository.deleteAll();
+    }
+
+    public void removePieceById(String id ){
+        piecesRepository.deleteById(id);
+    }
+
+
 }

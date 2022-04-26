@@ -22,7 +22,7 @@ public class PiecesController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response> filterCars(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Response> allPieces(@RequestParam(defaultValue = "0") int page,
                                                @RequestParam(defaultValue = "3") int size){
         try{
             List<Pieces> pieces;
@@ -31,7 +31,7 @@ public class PiecesController {
             pagePieces = piecesService.allPieces(paging);
             pieces = pagePieces.getContent();
             Response response = new Response(pieces,pagePieces.getTotalPages(),pagePieces.getTotalElements(),pagePieces.getNumber());
-            return new ResponseEntity<>(response,HttpStatus.OK);
+            return new ResponseEntity<Response>(response,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Pieces not found",HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -44,6 +44,26 @@ public class PiecesController {
             return new ResponseEntity<>(piece,HttpStatus.OK);
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<HttpStatus> deleteAllPieces() {
+        try {
+            piecesService.removeAllPieces();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity("Couldn't delete",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<HttpStatus> deletePiece(@PathVariable("id") String id) {
+        try {
+            piecesService.removePieceById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity("Couldn't delete",HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
