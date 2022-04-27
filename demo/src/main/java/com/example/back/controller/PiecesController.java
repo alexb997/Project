@@ -1,7 +1,6 @@
 package com.example.back.controller;
 
 import com.example.back.model.Pieces;
-import com.example.back.model.Pieces;
 import com.example.back.service.PiecesService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -55,6 +54,12 @@ public class PiecesController {
         } catch (Exception e) {
             return new ResponseEntity("Pieces not found",HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pieces> getPiece(@PathVariable("id") String id) {
+        Optional<Pieces> pieceData = piecesService.findById(id);
+        return pieceData.map(car -> new ResponseEntity<>(car, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/add")
