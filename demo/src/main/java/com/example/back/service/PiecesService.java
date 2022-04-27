@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PiecesService {
@@ -20,6 +21,10 @@ public class PiecesService {
 
     public Page<Pieces> allPieces(Pageable pageable){
         return piecesRepository.findAll(pageable);
+    }
+
+    public Optional<Pieces> findById(String id) {
+        return piecesRepository.findById(id);
     }
 
     public Page<Pieces> findByFilters(Map<String,String> filters, Pageable pageable){
@@ -55,6 +60,10 @@ public class PiecesService {
 
 
     public Pieces addPiece(Pieces piece) throws IllegalArgumentException{
+        return piecesRepository.save(piece);
+    }
+
+    public Pieces editPiece(Pieces piece){
         return piecesRepository.save(piece);
     }
 

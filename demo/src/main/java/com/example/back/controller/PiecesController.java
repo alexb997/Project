@@ -1,6 +1,7 @@
 package com.example.back.controller;
 
 import com.example.back.model.Pieces;
+import com.example.back.model.Pieces;
 import com.example.back.service.PiecesService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -62,6 +64,23 @@ public class PiecesController {
             return new ResponseEntity<>(piece,HttpStatus.OK);
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<Pieces> editPieces(@PathVariable("id") String id, @RequestBody Pieces piece) {
+        Optional<Pieces> pieceData = piecesService.findById(id);
+        if (pieceData.isPresent()) {
+            Pieces newPieces = pieceData.get();
+            newPieces.setName(piece.getName());
+            newPieces.setUtility(piece.getName());
+            newPieces.setType(piece.getName());
+            newPieces.setModel(piece.getModel());
+            newPieces.setPrice(piece.getPrice());
+            newPieces.setOwner(piece.getOwner());
+            return new ResponseEntity<>(piecesService.editPiece(newPieces), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
