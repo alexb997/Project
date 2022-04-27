@@ -1,7 +1,7 @@
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import "./Search.css";
-import Filters from "./Filters";
+import FiltersCar from "./FiltersCar";
 
 function Search() {
   return (
@@ -9,7 +9,11 @@ function Search() {
       <Container className="search-cars" fluid>
         <Container>
           <Row>
-            <Filters />
+            <Col>Option1</Col>
+            <Col>Option2</Col>
+          </Row>
+          <Row>
+            <FiltersCar />
           </Row>
         </Container>
       </Container>

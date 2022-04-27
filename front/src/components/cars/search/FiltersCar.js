@@ -2,7 +2,7 @@ import { Col, Row, Button, Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Navigate, Redirect } from "react-router-dom";
 
-function Filters() {
+function FiltersCar() {
   const [isLoading, setIsLoading] = useState(true);
   const [carsList, setCarsList] = useState([]);
   const [carsPerPage, setCarsPerPage] = useState(6);
@@ -254,4 +254,4 @@ function Filters() {
   );
 }
 
-export default Filters;
+export default FiltersCar;
