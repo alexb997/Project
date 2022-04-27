@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -29,6 +30,23 @@ public class PiecesController {
             Pageable paging = PageRequest.of(page, size);
             Page<Pieces> pagePieces;
             pagePieces = piecesService.allPieces(paging);
+            pieces = pagePieces.getContent();
+            Response response = new Response(pieces,pagePieces.getTotalPages(),pagePieces.getTotalElements(),pagePieces.getNumber());
+            return new ResponseEntity<Response>(response,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("Pieces not found",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/filter")
+    public ResponseEntity<Response> filterPieces(@RequestParam(required = false) Map<String,String> filterParams,
+                                               @RequestParam(defaultValue = "0") int page,
+                                               @RequestParam(defaultValue = "3") int size){
+        try{
+            List<Pieces> pieces;
+            Pageable paging = PageRequest.of(page, size);
+            Page<Pieces> pagePieces;
+            pagePieces = piecesService.findByFilters(filterParams,paging);
             pieces = pagePieces.getContent();
             Response response = new Response(pieces,pagePieces.getTotalPages(),pagePieces.getTotalElements(),pagePieces.getNumber());
             return new ResponseEntity<Response>(response,HttpStatus.OK);
