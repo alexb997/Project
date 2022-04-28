@@ -4,12 +4,12 @@ import { Navigate, Redirect } from "react-router-dom";
 
 function FiltersCar() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [carsList, setCarsList] = useState([]);
   const [carsPerPage, setCarsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
   const [totalElements, setTotalElements] = useState();
-  const [isUpdating, setIsUpdating] = useState(false);
   const [modelFilter, setModelFilter] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
   const [colorFilter, setColorFilter] = useState("");
@@ -19,103 +19,85 @@ function FiltersCar() {
   const [numberDoorsFilter, setNumberDoorsFilter] = useState(0);
   const [priceFilter, setPriceFilter] = useState(0);
 
-  useEffect(async () => {
-    await fetch(
-      "http://localhost:8080/cars/filter?brand=" +
-        brandFilter +
-        "&color=" +
-        colorFilter +
-        "&body=" +
-        bodyFilter +
-        "&combustible=" +
-        combustibleFilter +
-        "&cargoVolume=" +
-        cargoVolumeFilter +
-        "&model=" +
-        modelFilter +
-        "&numberDoors=" +
-        numberDoorsFilter +
-        "&price=" +
-        priceFilter +
-        "&page=" +
-        (currentPage - 1) +
-        "&size=" +
-        carsPerPage
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoading(false);
-        setCarsList(data.items);
-        setTotalPages(data.totalPages ? data.totalPages : 0);
-        setTotalElements(data.totalItems ? data.totalItems : 0);
-        setIsUpdating(false);
-      })
-      .catch((err) => console.log(err));
-  }, [isUpdating]);
-
-  const prevPage = () => {
-    if (currentPage - 1 < 1) {
-      console.log("There's no previous page");
-    } else {
-      setCurrentPage(currentPage - 1);
-      setIsUpdating(true);
-    }
-  };
-
-  const nextPage = () => {
-    if (currentPage + 1 > totalPages) {
-      console.log("There's no next page");
-    } else {
-      setCurrentPage(currentPage + 1);
-      setIsUpdating(true);
-    }
-  };
+  // useEffect(async () => {
+  //   await fetch(
+  //     "http://localhost:8080/cars/filter?brand=" +
+  //       brandFilter +
+  //       "&color=" +
+  //       colorFilter +
+  //       "&body=" +
+  //       bodyFilter +
+  //       "&combustible=" +
+  //       combustibleFilter +
+  //       "&cargoVolume=" +
+  //       cargoVolumeFilter +
+  //       "&model=" +
+  //       modelFilter +
+  //       "&numberDoors=" +
+  //       numberDoorsFilter +
+  //       "&price=" +
+  //       priceFilter +
+  //       "&page=" +
+  //       (currentPage - 1) +
+  //       "&size=" +
+  //       carsPerPage
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setIsLoading(false);
+  //       setCarsList(data.items);
+  //       setTotalPages(data.totalPages ? data.totalPages : 0);
+  //       setTotalElements(data.totalItems ? data.totalItems : 0);
+  //       setIsUpdating(false);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [isUpdating]);
 
   const handleSearchBy = () => {
-    fetch(
-      "http://localhost:8080/cars/filter?brand=" +
-        brandFilter +
-        "&color=" +
-        colorFilter +
-        "&body=" +
-        bodyFilter +
-        "&combustible=" +
-        combustibleFilter +
-        "&cargoVolume=" +
-        cargoVolumeFilter +
-        "&model=" +
-        modelFilter +
-        "&numberDoors=" +
-        numberDoorsFilter +
-        "&price=" +
-        priceFilter +
-        "&page=" +
-        (currentPage - 1) +
-        "&size=" +
-        carsPerPage
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        return (
-          <Navigate
-            to={{
-              pathname: "/test/new",
-              state: {
-                bodyFilter: bodyFilter,
-                combustibleFilter: combustibleFilter,
-                modelFilter: modelFilter,
-                brandFilter: brandFilter,
-                colorFilter: colorFilter,
-                cargoVolumeFilter: cargoVolumeFilter,
-                numberDoorsFilter: numberDoorsFilter,
-                priceFilter: priceFilter,
-                data: data,
-              },
-            }}
-          />
-        );
-      })
-      .catch((err) => console.log(err));
+    // fetch(
+    //   "http://localhost:8080/cars/filter?brand=" +
+    //     brandFilter +
+    //     "&color=" +
+    //     colorFilter +
+    //     "&body=" +
+    //     bodyFilter +
+    //     "&combustible=" +
+    //     combustibleFilter +
+    //     "&cargoVolume=" +
+    //     cargoVolumeFilter +
+    //     "&model=" +
+    //     modelFilter +
+    //     "&numberDoors=" +
+    //     numberDoorsFilter +
+    //     "&price=" +
+    //     priceFilter +
+    //     "&page=" +
+    //     (currentPage - 1) +
+    //     "&size=" +
+    //     carsPerPage
+    // )
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     return (
+    //       <Navigate
+    //         to={{
+    //           pathname: "/test/new",
+    //           state: {
+    //             bodyFilter: bodyFilter,
+    //             combustibleFilter: combustibleFilter,
+    //             modelFilter: modelFilter,
+    //             brandFilter: brandFilter,
+    //             colorFilter: colorFilter,
+    //             cargoVolumeFilter: cargoVolumeFilter,
+    //             numberDoorsFilter: numberDoorsFilter,
+    //             priceFilter: priceFilter,
+    //             data: data,
+    //           },
+    //         }}
+    //       />
+    //     );
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   const handleResetFilters = () => {

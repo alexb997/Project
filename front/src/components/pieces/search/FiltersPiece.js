@@ -4,120 +4,130 @@ import { Navigate, Redirect } from "react-router-dom";
 
 function FiltersPiece() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [piecesList, setPiecesList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState();
   const [totalElements, setTotalElements] = useState();
+  const [modelFilter, setModelFilter] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const [typeFilter, setTypeFilter] = useState("");
+  const [utilityFilter, setUtilityFilter] = useState("");
+  const [ownerFilter, setOwnerFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState(0);
 
-  useEffect(async () => {
-    console.log("Effect");
-  }, [isUpdating]);
-
-  const prevPage = () => {
-    if (currentPage - 1 < 1) {
-      console.log("There's no previous page");
-    } else {
-      setCurrentPage(currentPage - 1);
-      setIsUpdating(true);
-    }
+  const handleSearchBy = () => {
+    console.log(
+      "Searched pieces by: Name=" +
+        nameFilter +
+        " Type=" +
+        typeFilter +
+        " Utility=" +
+        utilityFilter +
+        " Model=" +
+        modelFilter +
+        " Owner=" +
+        ownerFilter +
+        " Price=" +
+        priceFilter
+    );
   };
 
-  const nextPage = () => {
-    if (currentPage + 1 > totalPages) {
-      console.log("There's no next page");
-    } else {
-      setCurrentPage(currentPage + 1);
-      setIsUpdating(true);
-    }
+  const handleResetFilters = () => {
+    setNameFilter("");
+    setTypeFilter("");
+    setModelFilter("");
+    setUtilityFilter("");
+    setOwnerFilter("");
+    setPriceFilter(0);
   };
-
-  const handleResetFilters = () => {};
 
   return (
     <Col md={6} className="filters-zone">
       <Row>
-        <Col md={8}>
-          <form
-            className="form-style"
-            onSubmit={(e) => {
-              handleSubmit(e);
-            }}
+        <hr className="hr-invisible" />
+        <Col>
+          <Button
+            onClick={handleResetFilters}
+            className="reset-button resetFiltersTag"
           >
-            <Row>
-              <Col md={6}>
-                <label className="formTag">Name:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="name"
-                  placeholder={piece.name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Col>
-              <Col md={6}>
-                <label className="formTag">Price:</label>
-                <input
-                  type="number"
-                  name="price"
-                  className="form-input"
-                  placeholder={piece.price}
-                  onChange={(e) => setPrice(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <hr className="hr-invisible" />
-            <Row>
-              <Col md={6}>
-                <label className="formTag">Model:</label>
-                <input
-                  type="text"
-                  name="model"
-                  className="form-input"
-                  placeholder={piece.model}
-                  onChange={(e) => setModel(e.target.value)}
-                />
-              </Col>
-              <Col md={6}>
-                <label className="formTag">Utility:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="utility"
-                  placeholder={piece.utility}
-                  onChange={(e) => setUtility(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <hr className="hr-invisible" />
-            <Row>
-              <Col md={6}>
-                <label className="formTag">Type:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="type"
-                  placeholder={piece.type}
-                  onChange={(e) => setType(e.target.value)}
-                />
-              </Col>
-              <Col md={6}>
-                <label className="formTag">Owner:</label>
-                <input
-                  className="form-input"
-                  type="text"
-                  name="owner"
-                  placeholder={piece.owner}
-                  onChange={(e) => setOwner(e.target.value)}
-                />
-              </Col>
-            </Row>
-
-            <hr className="hr-invisible" />
-            <Button variant="primary" type="submit">
-              Save piece
-            </Button>
-          </form>
+            Reset filters
+          </Button>
         </Col>
+      </Row>
+      <Row>
+        <Col md={1}>
+          <span className="filterTag">Name:</span>
+          <input
+            type="text"
+            id="name-search"
+            placeholder="Name"
+            className="filter-input"
+            name="keyword"
+            onChange={(e) => setNameFilter(e.target.value)}
+          />
+        </Col>
+        <Col md={{ span: 1, offset: 5 }}>
+          <span className="filterTag">Type:</span>
+          <input
+            type="text"
+            id="type-search"
+            placeholder="Type"
+            name="keyword"
+            className="filter-input"
+            onChange={(e) => setTypeFilter(e.target.value)}
+          />
+        </Col>
+        <hr className="hr-invisible" />
+      </Row>
+      <Row>
+        <Col md={1}>
+          <span className="filterTag">Model</span>
+          <input
+            type="text"
+            id="model-search"
+            placeholder="Model"
+            name="keyword"
+            className="filter-input"
+            onChange={(e) => setModelFilter(e.target.value)}
+          />
+        </Col>
+        <Col md={{ span: 1, offset: 5 }}>
+          <span className="filterTag">Utility:</span>
+          <input
+            type="text"
+            id="utility-search"
+            placeholder="Utility"
+            name="keyword"
+            className="filter-input"
+            onChange={(e) => setUtilityFilter(e.target.value)}
+          />
+        </Col>
+        <hr className="hr-invisible" />
+      </Row>
+      <Row>
+        <Col md={1}>
+          <span className="filterTag">Owner:</span>
+          <input
+            type="text"
+            id="owner-search"
+            placeholder="Owner"
+            className="filter-input"
+            name="keyword"
+            onChange={(e) => setOwnerFilter(e.target.value)}
+          />
+        </Col>
+        <Col md={{ span: 1, offset: 5 }}>
+          <span className="filterTag">Price</span>
+          <input
+            type="number"
+            id="price-search"
+            placeholder="Price"
+            className="filter-input"
+            onChange={(e) => setPriceFilter(e.target.value)}
+          />
+        </Col>
+        <hr className="hr-invisible" />
       </Row>
       <Row>
         <Container fluid>

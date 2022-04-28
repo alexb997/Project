@@ -1,20 +1,27 @@
 import { Container, Row, Col } from "react-bootstrap";
+import { useState } from "react";
 
 import "./Search.css";
 import FiltersCar from "./FiltersCar";
+import FiltersPiece from "../../pieces/search/FiltersPiece";
 
 function Search() {
+  const [filter, setFilter] = useState(true);
   return (
     <div>
       <Container className="search-cars" fluid>
         <Container>
           <Row>
-            <Col>Option1</Col>
-            <Col>Option2</Col>
+            <Col sm={5} offset={6}>
+              <button className="choices" onClick={() => setFilter(true)}>
+                Cars
+              </button>
+              <button className="choices" onClick={() => setFilter(false)}>
+                Pieces
+              </button>
+            </Col>
           </Row>
-          <Row>
-            <FiltersCar />
-          </Row>
+          <Row>{filter ? <FiltersCar /> : <FiltersPiece />}</Row>
         </Container>
       </Container>
       <hr className="hr-invisible" />
