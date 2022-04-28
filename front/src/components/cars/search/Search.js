@@ -1,5 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
+import { AiOutlineCar } from "react-icons/ai";
+import { GoGear } from "react-icons/go";
 
 import "./Search.css";
 import FiltersCar from "./FiltersCar";
@@ -12,12 +14,17 @@ function Search() {
       <Container className="search-cars" fluid>
         <Container>
           <Row>
-            <Col sm={5} offset={6}>
-              <button className="choices" onClick={() => setFilter(true)}>
-                Cars
+            <Col sm={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
+              <button
+                className="choices-active"
+                onClick={() => setFilter(true)}
+              >
+                <AiOutlineCar />
+                <p>Cars</p>
               </button>
               <button className="choices" onClick={() => setFilter(false)}>
-                Pieces
+                <GoGear />
+                <p>Pieces</p>
               </button>
             </Col>
           </Row>

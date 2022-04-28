@@ -18,10 +18,11 @@
 }
 .filters-zone{
     background-color: white;
-    border-radius: 1%;
+    border-bottom-left-radius: 1%;
+    border-bottom-right-radius: 1%;
     box-shadow: rgba(170, 167, 167, 0.12) 0px 11px 12px,
-    rgba(170, 167, 167, 0.12) 0px -6px 15px, rgba(170, 167, 167, 0.12) 0px 2px 3px,
-    rgba(170, 167, 167, 0.12) 0px 6px 6px, rgba(170, 167, 167, 0.12) 0px -1px 3px;
+    rgba(170, 167, 167, 0.12) 0px 0px 0px, rgba(170, 167, 167, 0.12) 0px 2px 3px,
+    rgba(170, 167, 167, 0.12) 0px 6px 6px, rgba(170, 167, 167, 0.12) 0px 0px 0px;
 }
 
 .search-cars{
@@ -32,4 +33,16 @@
 }
 .filters-results{
     background-color: rgba(138, 136, 136, 0.322);
+}
+
+.choices-active{
+    border: none;
+    background-color: white;
+    width: 25%;
+}
+
+.choices{
+    border: none;
+    background-color: whitesmoke;
+    width: 25%;
 }
