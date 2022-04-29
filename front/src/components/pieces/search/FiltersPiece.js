@@ -62,7 +62,7 @@ function FiltersPiece() {
             type="text"
             id="name-search"
             placeholder="Name"
-            className="filter-input"
+            className="input-field"
             name="keyword"
             onChange={(e) => setNameFilter(e.target.value)}
           />
@@ -74,7 +74,7 @@ function FiltersPiece() {
             id="type-search"
             placeholder="Type"
             name="keyword"
-            className="filter-input"
+            className="input-field"
             onChange={(e) => setTypeFilter(e.target.value)}
           />
         </Col>
@@ -88,7 +88,7 @@ function FiltersPiece() {
             id="model-search"
             placeholder="Model"
             name="keyword"
-            className="filter-input"
+            className="input-field"
             onChange={(e) => setModelFilter(e.target.value)}
           />
         </Col>
@@ -99,7 +99,7 @@ function FiltersPiece() {
             id="utility-search"
             placeholder="Utility"
             name="keyword"
-            className="filter-input"
+            className="input-field"
             onChange={(e) => setUtilityFilter(e.target.value)}
           />
         </Col>
@@ -123,7 +123,7 @@ function FiltersPiece() {
             type="number"
             id="price-search"
             placeholder="Price"
-            className="filter-input"
+            className="input-field"
             onChange={(e) => setPriceFilter(e.target.value)}
           />
         </Col>

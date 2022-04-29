@@ -40,6 +40,7 @@ function Login() {
       >
         <label>Username:</label>
         <input
+          className="form-input"
           type="text"
           name="username"
           placeholder={user.username}
@@ -49,6 +50,7 @@ function Login() {
         <hr className="hr-invisible" />
         <label>Password:</label>
         <input
+          className="form-input"
           type="password"
           name="password"
           placeholder={user.password}
@@ -56,7 +58,7 @@ function Login() {
           onKeyDown={(e) => setPassword(e.target.value)}
         />
         <hr className="hr-invisible" />
-        <input type="submit" value="Submit" />
+        <input className="input-submit" type="submit" value="Submit" />
       </form>
     </Container>
   );

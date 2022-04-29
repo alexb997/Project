@@ -4,11 +4,12 @@ import { AiOutlineCar } from "react-icons/ai";
 import { GoGear } from "react-icons/go";
 
 import "./Search.css";
-import FiltersCar from "./FiltersCar";
-import FiltersPiece from "../../pieces/search/FiltersPiece";
+import FiltersCar from "../cars/search/FiltersCar";
+import FiltersPiece from "../pieces/search/FiltersPiece";
 
 function Search() {
   const [filter, setFilter] = useState(true);
+  const [isActive, setIsActive] = useState(true);
   return (
     <div>
       <Container className="search-cars" fluid>
@@ -16,13 +17,22 @@ function Search() {
           <Row>
             <Col sm={6} style={{ paddingLeft: 0, paddingRight: 0 }}>
               <button
-                className="choices-active"
-                onClick={() => setFilter(true)}
+                className={isActive ? "choices-active" : "choices"}
+                onClick={() => {
+                  setIsActive(true);
+                  setFilter(true);
+                }}
               >
                 <AiOutlineCar />
                 <p>Cars</p>
               </button>
-              <button className="choices" onClick={() => setFilter(false)}>
+              <button
+                className={isActive ? "choices" : "choices-active"}
+                onClick={() => {
+                  setIsActive(false);
+                  setFilter(false);
+                }}
+              >
                 <GoGear />
                 <p>Pieces</p>
               </button>

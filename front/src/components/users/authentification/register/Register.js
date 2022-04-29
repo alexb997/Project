@@ -51,6 +51,7 @@ function Register() {
       >
         <label>Username:</label>
         <input
+          className="form-input"
           type="text"
           name="username"
           placeholder={user.username}
@@ -60,6 +61,7 @@ function Register() {
         <hr className="hr-invisible" />
         <label>Password:</label>
         <input
+          className="form-input"
           type="password"
           name="password"
           placeholder={user.password}
@@ -67,7 +69,7 @@ function Register() {
           onKeyDown={(e) => passwordChange(e.target.value)}
         />
         <hr className="hr-invisible" />
-        <input type="submit" value="Submit" />
+        <input className="input-submit" type="submit" value="Submit" />
       </form>
     </div>
   );

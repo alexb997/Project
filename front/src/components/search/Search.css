@@ -36,13 +36,18 @@
 }
 
 .choices-active{
-    border: none;
-    background-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid white;
     width: 25%;
 }
 
 .choices{
-    border: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid white;
     background-color: whitesmoke;
     width: 25%;
 }

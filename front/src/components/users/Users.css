@@ -4,15 +4,17 @@ form {
   flex-direction: column;
 }
  
-  input[type="text"], input[type="number"], input[type="password"]{
+  .input-field{
     background-color: whitesmoke;
+    border-bottom: 2px solid white;
     border-radius: 2%;
     box-sizing: border-box;
   }:focus{
     outline: 0;
+    background-color: white;
     border-bottom: 2px solid blue;
   }
-  input[type="submit"]{
+  .input-submit{
     outline: 1px solid #00aeef;
     background-color: blue;
     color: white;
