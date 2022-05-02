@@ -32,7 +32,6 @@ public class PiecesService {
         String utility="";
         String model="";
         String type="";
-        int price=0;
         for (String filter : filters.keySet()) {
             if(Objects.equals(filter, "name")){
                 name=filters.get(filter);
@@ -46,13 +45,6 @@ public class PiecesService {
             if(Objects.equals(filter, "type")){
                 type=filters.get(filter);
             }
-            if(Objects.equals(filter, "price")){
-                price=Integer.parseInt(filters.get(filter));
-            }
-        }
-        if(price!=0){
-            return piecesRepository.findAllByNameMatchesRegexAndUtilityMatchesRegexAndModelMatchesRegexAndTypeMatchesRegexAndPrice
-                    (name,utility,model,type,price,pageable);
         }
         return piecesRepository.findAllByNameMatchesRegexAndUtilityMatchesRegexAndModelMatchesRegexAndTypeMatchesRegex
                 (name,utility,model,type,pageable);

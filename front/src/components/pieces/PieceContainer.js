@@ -1,5 +1,4 @@
-import { Button } from "bootstrap";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 
 function PieceContainer(props) {
   function Capitalize(str) {

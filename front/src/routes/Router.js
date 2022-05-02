@@ -9,6 +9,7 @@ import AddPiece from "../components/pieces/add/AddPiece";
 import EditPiece from "../components/pieces/edit/EditPiece";
 import Authentification from "../components/users/authentification/Authentification";
 import Profile from "../components/users/profile/Profile";
+import ResultsPiece from "../components/pieces/search/ResultsPiece";
 
 function AppRouter() {
   return (
@@ -20,6 +21,7 @@ function AppRouter() {
         <Route path="/cars/filtered" element={<Results />} />
         <Route path="/piece/add" element={<AddPiece />} />
         <Route path="/piece/edit/:id" element={<EditPiece />} />
+        <Route path="/pieces/" element={<ResultsPiece />} />
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/user/:username" element={<Profile />} />
       </Routes>
