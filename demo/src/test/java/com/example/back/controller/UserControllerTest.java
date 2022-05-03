@@ -44,4 +44,18 @@ public class UserControllerTest {
         JSONAssert.assertEquals(expected, result.getResponse()
                 .getContentAsString(), false);
     }
+
+    @Test
+    public void deleteClientTest() throws Exception {
+
+        Mockito.when(userService.findByUsername(Mockito.anyString()))
+                .thenReturn(java.util.Optional.of(mockUser));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/users/login")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        assertEquals(204,result.getStatus());
+    }
+
 }

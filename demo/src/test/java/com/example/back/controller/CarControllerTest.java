@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -128,5 +130,40 @@ public class CarControllerTest {
                 "cargoVolume:7}";
         JSONAssert.assertEquals(expectedUpdate, resultPut.getResponse()
                 .getContentAsString(),false);
+    }
+
+    @Test
+    public void filterCars() throws Exception {
+        Car mockCar2 = new Car("Tesla","White","Tesla","Van","updated123",1200,5,"Electric",7);
+        Car mockCar3 = new Car("Toyota","Black","Tesla","Van","tester122",1200,5,"Electric",7);
+
+
+        Mockito.when(carService.findByFilters(Mockito.anyMap(String,String))).thenReturn(j);
+        Mockito.when(carService.editCar(Mockito.any(Car.class))).thenReturn(mockListCars);
+
+        RequestBuilder requestBuilderGet = MockMvcRequestBuilders
+                .put("/cars/edit/someID")
+                .accept(MediaType.APPLICATION_JSON).content(mockListCars)
+                .contentType(MediaType.APPLICATION_JSON);
+
+
+        MvcResult resultFilter = mockMvc.perform(requestBuilderGet).andReturn();
+        String expectedFiltered = "{brand:Tesla,"+
+                "color:White,"+
+                "model:Tesla,"+
+                "body:Van,"+
+                "combustible:Electric,"+
+                "owner:updated123,"+
+                "price:1200,"+
+                "numberDoors:5,"+
+                "cargoVolume:7},{brand:Tesla," +
+                "color:Black," +
+                "model:Tesla," +
+                "body:Van," +
+                "combustible:Electric," +
+                "owner:testing122," +
+                "price:1200," +
+                "numberDoors:5," +
+                "cargoVolume:7}";
     }
 }
