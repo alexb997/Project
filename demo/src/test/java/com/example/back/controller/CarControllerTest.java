@@ -72,4 +72,17 @@ public class CarControllerTest {
         MockHttpServletResponse response = result.getResponse();
         assertEquals(HttpStatus.CREATED.value(), response.getStatus());
     }
+
+    @Test
+    public void deleteCarTest() throws Exception {
+        Mockito.when(carService.findById(Mockito.anyString()))
+                .thenReturn(java.util.Optional.of(mockCar));
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/cars/delete/deleteID")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        assertEquals(204,response.getStatus());
+    }
 }
