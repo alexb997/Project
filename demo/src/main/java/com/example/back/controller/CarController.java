@@ -66,10 +66,9 @@ public class CarController {
 
     @PostMapping("/add")
     public ResponseEntity<Car> addCar(@RequestBody Car car) {
-        System.out.println("Calling car controller addCar");
         try{
             Car newCar = carService.addCar(car);
-            return new ResponseEntity<>(newCar,HttpStatus.OK);
+            return new ResponseEntity<>(newCar,HttpStatus.CREATED);
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
