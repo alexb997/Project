@@ -17,19 +17,18 @@ function ResultsPiece(props) {
 
   useEffect(async () => {
     await fetch(
-      "http://localhost:8080/pieces/all"
-      //   "http://localhost:8080/pieces/filter?name=" +
-      //     nameFilter +
-      //     " utility=" +
-      //     utilityFilter +
-      //     " model=" +
-      //     modelFilter +
-      //     " type=" +
-      //     typeFilter +
-      //     "&page=" +
-      //     (currentPage - 1) +
-      //     "&size=" +
-      //     piecesPerPage
+      "http://localhost:8080/pieces/filter?name=" +
+        nameFilter +
+        "&utility=" +
+        utilityFilter +
+        "&model=" +
+        modelFilter +
+        "&type=" +
+        typeFilter +
+        "&page=" +
+        (currentPage - 1) +
+        "&size=" +
+        piecesPerPage
     )
       .then((response) => response.json())
       .then((data) => {
@@ -50,11 +49,11 @@ function ResultsPiece(props) {
     fetch(
       "http://localhost:8080/pieces/filter?name=" +
         nameFilter +
-        " utility=" +
+        "&utility=" +
         utilityFilter +
-        " model=" +
+        "&model=" +
         modelFilter +
-        " type=" +
+        "&type=" +
         typeFilter +
         "&page=" +
         (currentPage - 1) +
@@ -76,11 +75,11 @@ function ResultsPiece(props) {
     fetch(
       "http://localhost:8080/pieces/filter?name=" +
         nameFilter +
-        " utility=" +
+        "&utility=" +
         utilityFilter +
-        " model=" +
+        "&model=" +
         modelFilter +
-        " type=" +
+        "&type=" +
         typeFilter +
         "&page=" +
         (currentPage - 1) +
@@ -183,7 +182,9 @@ function ResultsPiece(props) {
         <Row>
           {piecesList.length !== 0 ? (
             piecesList.map((p, index) => (
-              <PieceContainer piece={p} key={index} />
+              <Col md={3}>
+                <PieceContainer piece={p} key={index} />
+              </Col>
             ))
           ) : (
             <h3>No pieces documented</h3>
