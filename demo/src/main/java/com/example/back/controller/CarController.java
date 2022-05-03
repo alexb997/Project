@@ -31,7 +31,7 @@ public class CarController {
     }
 
     @GetMapping("/owned/{owner}")
-    public ResponseEntity<Response> getCar(@PathVariable("owner") String owner,
+    public ResponseEntity<Response> getCars(@PathVariable("owner") String owner,
                                            @RequestParam(defaultValue = "0") int page,
                                            @RequestParam(defaultValue = "3") int size) {
         try{
