@@ -9,6 +9,9 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
@@ -20,6 +23,8 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -137,8 +142,18 @@ public class CarControllerTest {
         Car mockCar2 = new Car("Tesla","White","Tesla","Van","updated123",1200,5,"Electric",7);
         Car mockCar3 = new Car("Toyota","Black","Tesla","Van","tester122",1200,5,"Electric",7);
 
+        Mockito.when(carService.findByFilters(Mockito.any(Map<String,String>))).thenReturn(response);
 
-        Mockito.when(carService.findByFilters(Mockito.anyMap(String,String))).thenReturn(j);
+        List<Car> mockListCars;
+        mockListCars.add(mockCar);
+        mockListCars.add(mockCar2);
+        mockListCars.add(mockCar3);
+        Pageable paging = PageRequest.of(0, 5);
+        Page<Car> pageCars=new Page
+        cars = pageCars.getContent();
+        Response response = new Response(mockListCars,pageCars.getTotalPages(),pageCars.getTotalElements(),pageCars.getNumber());
+
+
         Mockito.when(carService.editCar(Mockito.any(Car.class))).thenReturn(mockListCars);
 
         RequestBuilder requestBuilderGet = MockMvcRequestBuilders

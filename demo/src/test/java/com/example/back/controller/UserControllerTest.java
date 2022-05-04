@@ -34,7 +34,7 @@ public class UserControllerTest {
         Mockito.when(
                 userService.loginUser(Mockito.anyString(),Mockito.anyString())).thenReturn(java.util.Optional.of(mockUser));
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
-                "/users/login").accept(
+                "/users/login?username=user&password=pass").accept(
                 MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
@@ -46,16 +46,21 @@ public class UserControllerTest {
     }
 
     @Test
-    public void deleteClientTest() throws Exception {
+    public void getUserTest() throws Exception {
 
         Mockito.when(userService.findByUsername(Mockito.anyString()))
                 .thenReturn(java.util.Optional.of(mockUser));
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .delete("/users/login")
+                .get("/users/someUsername")
                 .contentType(MediaType.APPLICATION_JSON);
 
+        String expected = "{username:test,"+
+                "password:testing}";
+
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        assertEquals(204,result.getStatus());
+        JSONAssert.assertEquals(expected, result.getResponse()
+                .getContentAsString(), false);
+
     }
 
 }
