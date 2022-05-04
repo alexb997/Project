@@ -18,6 +18,17 @@ public class Pieces {
     private String owner;
     private int price;
 
+    public Pieces(){};
+
+    public Pieces(String name, String model, String utility, String type, String owner, int price) {
+        this.name = name;
+        this.model = model;
+        this.utility = utility;
+        this.type = type;
+        this.owner = owner;
+        this.price = price;
+    }
+
     public String getId() {
         return id;
     }

@@ -1,6 +1,5 @@
 package com.example.back.controller;
 
-import com.example.back.model.Car;
 import com.example.back.model.User;
 import com.example.back.service.UserService;
 import org.junit.Test;
