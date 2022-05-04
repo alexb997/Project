@@ -158,6 +158,4 @@ public class CarControllerTest {
         mockMvc.perform(requestBuilderGet).andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.items",hasSize(3)));
     }
-
-
 }

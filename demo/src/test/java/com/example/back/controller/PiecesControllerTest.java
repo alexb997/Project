@@ -4,6 +4,7 @@ import com.example.back.model.Pieces;
 import com.example.back.service.PiecesService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class PiecesControllerTest {
 
     Pieces mockPiece = new Pieces("Anvelope-iarna","Mercedes-benz","Piese-auto","Anvelope","Tester121",121);
 
-    String mockPieceJSON ="{\"name\":\"Anvelope iarna\",\"model\":\"Mercedes-benz\",\"utility\":\"Piese auto\",\"type\":\"Anvelope\",\"owner\":\"Tester121\",\"price\":\"121\"}";
+    String mockPieceJSON ="{\"name\":\"Anvelope-iarna\",\"model\":\"Mercedes-benz\",\"utility\":\"Piese auto\",\"type\":\"Anvelope\",\"owner\":\"Tester121\",\"price\":\"121\"}";
 
     @Test
     public void getPieceTest() throws Exception {
@@ -67,4 +68,41 @@ public class PiecesControllerTest {
         assertEquals(HttpStatus.CREATED.value(), response.getStatus());
     }
 
+    @Test
+    public void editPieceTest() throws Exception{
+        Pieces mockPieceUpdated = new Pieces("Anvelope-vara","Mercedes-benz","Piese-auto","Anvelope","Tester121",121);
+        String mockPieceUpdatedJSON = "{\"name\":\"Anvelope-vara\",\"model\":\"Mercedes-benz\",\"utility\":\"Piese auto\",\"type\":\"Anvelope\",\"owner\":\"Tester121\",\"price\":\"121\"}";
+
+        Mockito.when(piecesService.findById(Mockito.anyString())).thenReturn(Optional.of(mockPiece));
+        Mockito.when(piecesService.editPiece(Mockito.any(Pieces.class))).thenReturn(mockPieceUpdated);
+
+        RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
+                "/pieces/someID").accept(
+                MediaType.APPLICATION_JSON);
+        RequestBuilder requestBuilderPut = MockMvcRequestBuilders
+                .put("/pieces/edit/someID")
+                .accept(MediaType.APPLICATION_JSON).content(mockPieceUpdatedJSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult resultGet = mockMvc.perform(requestBuilderGet).andReturn();
+        System.out.println(resultGet.getResponse());
+        String expected = "{name:Anvelope-iarna,"+
+                "model:Mercedes-benz,"+
+                "utility:Piese-auto,"+
+                "type:Anvelope,"+
+                "owner:Tester121,"+
+                "price:121}";
+        JSONAssert.assertEquals(expected, resultGet.getResponse()
+                .getContentAsString(), false);
+
+        MvcResult resultPut = mockMvc.perform(requestBuilderPut).andReturn();
+        String expectedUpdate = "{name:Anvelope-vara,"+
+                "model:Mercedes-benz,"+
+                "utility:Piese-auto,"+
+                "type:Anvelope,"+
+                "owner:Tester121,"+
+                "price:121}";
+        JSONAssert.assertEquals(expectedUpdate, resultPut.getResponse()
+                .getContentAsString(),false);
+    }
 }

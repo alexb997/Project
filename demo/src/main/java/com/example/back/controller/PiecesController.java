@@ -73,7 +73,7 @@ public class PiecesController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Pieces> editPieces(@PathVariable("id") String id, @RequestBody Pieces piece) {
+    public ResponseEntity<Pieces> editPiece(@PathVariable("id") String id, @RequestBody Pieces piece) {
         Optional<Pieces> pieceData = piecesService.findById(id);
         if (pieceData.isPresent()) {
             Pieces newPieces = pieceData.get();
