@@ -23,10 +23,15 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = CarController.class)
@@ -139,46 +144,19 @@ public class CarControllerTest {
 
     @Test
     public void filterCars() throws Exception {
-        Car mockCar2 = new Car("Tesla","White","Tesla","Van","updated123",1200,5,"Electric",7);
-        Car mockCar3 = new Car("Toyota","Black","Tesla","Van","tester122",1200,5,"Electric",7);
 
-        Mockito.when(carService.findByFilters(Mockito.any(Map<String,String>))).thenReturn(response);
+        String match = "Cars not found";
+        Map<String,String> mockFilters = new HashMap<>();
+        Page<Car> pageCars = carService.findByFilters(mockFilters,PageRequest.of(0, 3));
 
-        List<Car> mockListCars;
-        mockListCars.add(mockCar);
-        mockListCars.add(mockCar2);
-        mockListCars.add(mockCar3);
-        Pageable paging = PageRequest.of(0, 5);
-        Page<Car> pageCars=new Page
-        cars = pageCars.getContent();
-        Response response = new Response(mockListCars,pageCars.getTotalPages(),pageCars.getTotalElements(),pageCars.getNumber());
+        given(carService.findByFilters(mockFilters,PageRequest.of(0, 3))).willReturn(pageCars);
+//        Mockito.when(carService.findByFilters(Mockito.anyMap(),Mockito.any(Pageable.class))).thenReturn(mockPageCars);
+        RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
+                "/cars/filter").accept(
+                MediaType.APPLICATION_JSON);
 
-
-        Mockito.when(carService.editCar(Mockito.any(Car.class))).thenReturn(mockListCars);
-
-        RequestBuilder requestBuilderGet = MockMvcRequestBuilders
-                .put("/cars/edit/someID")
-                .accept(MediaType.APPLICATION_JSON).content(mockListCars)
-                .contentType(MediaType.APPLICATION_JSON);
-
-
-        MvcResult resultFilter = mockMvc.perform(requestBuilderGet).andReturn();
-        String expectedFiltered = "{brand:Tesla,"+
-                "color:White,"+
-                "model:Tesla,"+
-                "body:Van,"+
-                "combustible:Electric,"+
-                "owner:updated123,"+
-                "price:1200,"+
-                "numberDoors:5,"+
-                "cargoVolume:7},{brand:Tesla," +
-                "color:Black," +
-                "model:Tesla," +
-                "body:Van," +
-                "combustible:Electric," +
-                "owner:testing122," +
-                "price:1200," +
-                "numberDoors:5," +
-                "cargoVolume:7}";
+        mockMvc.perform(requestBuilderGet).andDo(print());
     }
+
+
 }
