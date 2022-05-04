@@ -9,7 +9,9 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,6 +20,8 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = PiecesController.class)
@@ -49,4 +53,18 @@ public class PiecesControllerTest {
                 "price:121}";
         JSONAssert.assertEquals(expected,result.getResponse().getContentAsString(),false);
     }
+
+    @Test
+    public void addPieceTest() throws Exception{
+        Mockito.when(piecesService.addPiece(Mockito.any(Pieces.class))).thenReturn(mockPiece);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/pieces/add")
+                .accept(MediaType.APPLICATION_JSON).content(mockPieceJSON)
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+    }
+
 }

@@ -66,7 +66,7 @@ public class PiecesController {
     public ResponseEntity<Pieces> addPiece(@RequestBody Pieces piece) {
         try{
             Pieces newPiece = piecesService.addPiece(piece);
-            return new ResponseEntity<>(piece,HttpStatus.OK);
+            return new ResponseEntity<>(piece,HttpStatus.CREATED);
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
