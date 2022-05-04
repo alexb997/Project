@@ -24,7 +24,7 @@ public class PiecesController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response> allPieces(@RequestParam(defaultValue = "0") int page,
+    public ResponseEntity<Response> getAllPieces(@RequestParam(defaultValue = "0") int page,
                                                @RequestParam(defaultValue = "3") int size){
         try{
             List<Pieces> pieces;
@@ -40,7 +40,7 @@ public class PiecesController {
     }
 
     @GetMapping("/filter")
-    public ResponseEntity<Response> filterPieces(@RequestParam(required = false) Map<String,String> filterParams,
+    public ResponseEntity<Response> getFilteredPieces(@RequestParam(required = false) Map<String,String> filterParams,
                                                @RequestParam(defaultValue = "0") int page,
                                                @RequestParam(defaultValue = "3") int size){
         try{

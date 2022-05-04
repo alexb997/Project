@@ -85,8 +85,6 @@ public class CarControllerTest {
 
     @Test
     public void deleteCarTest() throws Exception {
-        Mockito.when(carService.findById(Mockito.anyString()))
-                .thenReturn(java.util.Optional.of(mockCar));
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .delete("/cars/delete/deleteID")
                 .contentType(MediaType.APPLICATION_JSON);
