@@ -11,7 +11,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,9 +23,7 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -159,7 +156,7 @@ public class CarControllerTest {
                 MediaType.APPLICATION_JSON);
 
         mockMvc.perform(requestBuilderGet).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.items",hasSize(3)));;
+                .andExpect(jsonPath("$.items",hasSize(3)));
     }
 
 
