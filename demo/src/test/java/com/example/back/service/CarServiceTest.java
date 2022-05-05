@@ -2,8 +2,6 @@ package com.example.back.service;
 
 import com.example.back.model.Car;
 import com.example.back.repository.CarRepository;
-import com.jayway.jsonpath.JsonPath;
-import org.assertj.core.api.Condition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -80,6 +78,25 @@ public class CarServiceTest {
         Page<Car> mockPageCars= new PageImpl<>(mockCarList);
         Mockito.when(carRepository.findAll(Mockito.any(Pageable.class))).thenReturn(mockPageCars);
         Page<Car> result = carService.allCars(PageRequest.of(0,3));
+
+        assertThat(result.getTotalElements()).isEqualTo(mockPageCars.getTotalElements());
+        System.out.println(result.getTotalElements());
+    }
+
+    @Test
+    public void findByOwnerTest() {
+        List<Car> mockCarList= new ArrayList<>();
+        Car mockCar2 = new Car("Tesla","Black","Tesla","Van",null,1200,5,"Electric",7);
+        Car mockCar3 = new Car("Dacia","Silver","Tesla","Van",null,1200,5,"Electric",7);
+        Car mockCar4 = new Car("Jaguar","Red","Tesla","Van",null,1200,5,"Electric",7);
+
+        mockCarList.add(mockCar);
+        mockCarList.add(mockCar2);
+        mockCarList.add(mockCar3);
+        mockCarList.add(mockCar4);
+        Page<Car> mockPageCars= new PageImpl<>(mockCarList);
+        Mockito.when(carRepository.findAllByOwner(Mockito.anyString(),Mockito.any(Pageable.class))).thenReturn(mockPageCars);
+        Page<Car> result = carService.findByOwner("someone",PageRequest.of(0,3));
 
         assertThat(result.getTotalElements()).isEqualTo(mockPageCars.getTotalElements());
         System.out.println(result.getTotalElements());
