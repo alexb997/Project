@@ -13,9 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -97,6 +95,33 @@ public class CarServiceTest {
         Page<Car> mockPageCars= new PageImpl<>(mockCarList);
         Mockito.when(carRepository.findAllByOwner(Mockito.anyString(),Mockito.any(Pageable.class))).thenReturn(mockPageCars);
         Page<Car> result = carService.findByOwner("someone",PageRequest.of(0,3));
+
+        assertThat(result.getTotalElements()).isEqualTo(mockPageCars.getTotalElements());
+        System.out.println(result.getTotalElements());
+    }
+
+    @Test
+    public void findByFiltersTest() {
+        List<Car> mockCarList= new ArrayList<>();
+        List<Car> mockCarList2= new ArrayList<>();
+        Car mockCar2 = new Car("Tesla","Black","Tesla","Van",null,1200,5,"Electric",7);
+        Car mockCar3 = new Car("Dacia","Silver","Tesla","Van",null,1200,5,"Electric",7);
+        Car mockCar4 = new Car("Jaguar","Red","Tesla","Van",null,1200,5,"Electric",7);
+
+        mockCarList.add(mockCar);
+        mockCarList.add(mockCar2);
+        mockCarList.add(mockCar3);
+        mockCarList.add(mockCar4);
+
+        mockCarList2.add(mockCar2);
+        mockCarList2.add(mockCar3);
+
+//        To be changed for different cases>
+        Map<String,String> mockFilters= new HashMap<>();
+
+        Page<Car> mockPageCars= new PageImpl<>(mockCarList);
+        Mockito.when(carRepository.findAllByBrandMatchesRegexAndColorMatchesRegexAndModelMatchesRegexAndBodyMatchesRegexAndCombustibleMatchesRegex(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.any(Pageable.class))).thenReturn(mockPageCars);
+        Page<Car> result = carService.findByFilters(mockFilters,PageRequest.of(0,3));
 
         assertThat(result.getTotalElements()).isEqualTo(mockPageCars.getTotalElements());
         System.out.println(result.getTotalElements());
