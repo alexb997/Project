@@ -1,8 +1,8 @@
 package com.example.back.service;
 
-import com.example.back.model.Car;
 import com.example.back.model.Pieces;
 import com.example.back.repository.PiecesRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -29,10 +29,10 @@ public class PiecesService {
     }
 
     public Page<Pieces> findByFilters(Map<String,String> filters, Pageable pageable){
-        String name="";
-        String utility="";
-        String model="";
-        String type="";
+        String name= StringUtils.EMPTY;
+        String utility=StringUtils.EMPTY;
+        String model=StringUtils.EMPTY;
+        String type=StringUtils.EMPTY;
         for (String filter : filters.keySet()) {
             if(Objects.equals(filter, "name")){
                 name=filters.get(filter);

@@ -2,6 +2,7 @@ package com.example.back.service;
 
 import com.example.back.model.Car;
 import com.example.back.repository.CarRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -45,11 +46,11 @@ public class CarService {
     }
 
     public Page<Car> findByFilters(Map<String,String> filters,Pageable pageable){
-        String brand="";
-        String color="";
-        String model="";
-        String combustible="";
-        String body="";
+        String brand=StringUtils.EMPTY;
+        String color=StringUtils.EMPTY;
+        String model=StringUtils.EMPTY;
+        String combustible=StringUtils.EMPTY;
+        String body=StringUtils.EMPTY;
         int numberDoors=0;
         int cargoVolume=0;
         for (String filter : filters.keySet()) {

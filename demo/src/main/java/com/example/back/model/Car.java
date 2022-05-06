@@ -23,7 +23,7 @@ public class Car {
     public Car(){}
 
     public Car(String brand, String color, String model, String body, String owner, int price, int numberDoors, String combustible, int cargoVolume) {
-        this.brand = brand;
+        setBrand(brand);
         this.color = color;
         this.model = model;
         this.body = body;
