@@ -62,6 +62,7 @@ public class CarController {
         } catch (Exception e) {
             return new ResponseEntity("Cars not found",HttpStatus.INTERNAL_SERVER_ERROR);
         }
+
     }
 
     @PostMapping("/add")
@@ -76,22 +77,8 @@ public class CarController {
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Car> editCar(@PathVariable("id") String id, @RequestBody Car car) {
-        Optional<Car> carData = carService.findById(id);
-        if (carData.isPresent()) {
-            Car newCar = carData.get();
-            newCar.setBrand(car.getBrand());
-            newCar.setColor(car.getColor());
-            newCar.setCombustible(car.getCombustible());
-            newCar.setBody(car.getBody());
-            newCar.setNumberDoors(car.getNumberDoors());
-            newCar.setCargoVolume(car.getCargoVolume());
-            newCar.setModel(car.getModel());
-            newCar.setPrice(car.getPrice());
-            newCar.setOwner(car.getOwner());
-            return new ResponseEntity<>(carService.editCar(newCar), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        Optional<Car> updated = carService.editCar(id,car);
+        return updated.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/deleteAll")

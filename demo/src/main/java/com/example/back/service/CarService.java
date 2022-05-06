@@ -27,8 +27,13 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public Car editCar(Car car){
-        return carRepository.save(car);
+    public Optional<Car> editCar(String id,Car car) {
+        return carRepository.findById(id)
+                .map(oldCar -> {
+                    Car updated = oldCar.updateWith(car);
+                    updated.setId(id);
+                    return carRepository.save(updated);
+                });
     }
 
     public Page<Car> allCars(Pageable pageable){

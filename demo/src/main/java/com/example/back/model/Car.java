@@ -110,6 +110,22 @@ public class Car {
         this.cargoVolume = cargoVolume;
     }
 
+    public Car updateWith(Car car) {
+        Car updated = new Car(
+                car.brand,
+                car.color,
+                car.model,
+                car.body,
+                car.owner,
+                car.price,
+                car.numberDoors,
+                car.combustible,
+                car.cargoVolume
+        );
+        updated.setId(car.id);
+        return updated;
+    }
+
     @Override
     public String toString() {
         return "Car{" +

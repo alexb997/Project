@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -99,8 +100,7 @@ public class CarControllerTest {
         Car mockCarUpdated = new Car("Tesla","White","Tesla","Van","updated123",1200,5,"Electric",7);
         String mockStringCarUpdated ="{\"brand\":\"Tesla\",\"color\":\"White\",\"model\":\"Tesla\",\"body\":\"Van\",\"combustible\":\"Electric\",\"owner\":\"updated123\",\"price\":\"1200\",\"numberDoors\":\"5\",\"cargoVolume\":\"7\"}";
 
-        Mockito.when(carService.findById(Mockito.anyString())).thenReturn(java.util.Optional.of(mockCar));
-        Mockito.when(carService.editCar(Mockito.any(Car.class))).thenReturn(mockCarUpdated);
+        Mockito.when(carService.editCar(Mockito.anyString(),Mockito.any(Car.class))).thenReturn(Optional.of(mockCarUpdated));
 
         RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
                 "/cars/someID").accept(
