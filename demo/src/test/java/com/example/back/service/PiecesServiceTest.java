@@ -68,10 +68,12 @@ public class PiecesServiceTest {
 
     @Test
     public void editPiecesTest() throws Exception{
+
+        Mockito.when(piecesRepository.findById(Mockito.anyString())).thenReturn(java.util.Optional.of(mockPiece));
         Mockito.when(piecesRepository.save(Mockito.any(Pieces.class))).thenReturn(mockPiece);
         mockPiece.setModel("Magical");
-        Pieces result = piecesService.addPiece(new Pieces());
-        String expected ="Pieces{name='Anvelope-iarna', model='Magical', utility='Piese-auto', type='Anvelope', owner='Tester121', price=121}";
+        Optional<Pieces> result = piecesService.editPiece(Mockito.anyString(),new Pieces());
+        String expected ="Optional[Pieces{name='Anvelope-iarna', model='Magical', utility='Piese-auto', type='Anvelope', owner='Tester121', price=121}]";
 
         assertThat(result.toString()).isEqualTo(expected);
         System.out.println(result);

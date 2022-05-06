@@ -42,6 +42,15 @@ public class User {
         this.password = password;
     }
 
+    public User updateWith(User user) {
+        User updated = new User(
+                user.username,
+                user.password
+        );
+        updated.setId(user.id);
+        return updated;
+    }
+
     @Override
     public String toString() {
         return "User{" +

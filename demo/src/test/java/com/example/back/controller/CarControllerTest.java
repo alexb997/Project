@@ -101,28 +101,10 @@ public class CarControllerTest {
         String mockStringCarUpdated ="{\"brand\":\"Tesla\",\"color\":\"White\",\"model\":\"Tesla\",\"body\":\"Van\",\"combustible\":\"Electric\",\"owner\":\"updated123\",\"price\":\"1200\",\"numberDoors\":\"5\",\"cargoVolume\":\"7\"}";
 
         Mockito.when(carService.editCar(Mockito.anyString(),Mockito.any(Car.class))).thenReturn(Optional.of(mockCarUpdated));
-
-        RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
-                "/cars/someID").accept(
-                MediaType.APPLICATION_JSON);
         RequestBuilder requestBuilderPut = MockMvcRequestBuilders
                 .put("/cars/edit/someID")
                 .accept(MediaType.APPLICATION_JSON).content(mockStringCarUpdated)
                 .contentType(MediaType.APPLICATION_JSON);
-
-        MvcResult resultGet = mockMvc.perform(requestBuilderGet).andReturn();
-        System.out.println(resultGet.getResponse());
-        String expected = "{brand:Tesla,"+
-                "color:White,"+
-                "model:Tesla,"+
-                "body:Van,"+
-                "combustible:Electric,"+
-                "owner:null,"+
-                "price:1200,"+
-                "numberDoors:5,"+
-                "cargoVolume:7}";
-        JSONAssert.assertEquals(expected, resultGet.getResponse()
-                .getContentAsString(), false);
 
         MvcResult resultPut = mockMvc.perform(requestBuilderPut).andReturn();
         String expectedUpdate = "{brand:Tesla,"+

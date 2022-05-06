@@ -50,10 +50,12 @@ public class CarServiceTest {
 
     @Test
     public void editCarTest() throws Exception{
+
+        Mockito.when(carRepository.findById(Mockito.anyString())).thenReturn(java.util.Optional.of(mockCar));
         Mockito.when(carRepository.save(Mockito.any(Car.class))).thenReturn(mockCar);
         mockCar.setColor("Black");
-        Car result = carService.addCar(new Car());
-        String expected ="Car{brand='Tesla', color='Black', model='Tesla', body='Van', combustible='Electric', owner='null', price=1200, numberDoors=5, cargoVolume=7}";
+        Optional<Car> result = carService.editCar(Mockito.anyString(),new Car());
+        String expected ="Optional[Car{brand='Tesla', color='Black', model='Tesla', body='Van', combustible='Electric', owner='null', price=1200, numberDoors=5, cargoVolume=7}]";
 
         assertThat(result.toString()).isEqualTo(expected);
         System.out.println(result);

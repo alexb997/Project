@@ -120,24 +120,10 @@ public class PiecesControllerTest {
 
         Mockito.when(piecesService.editPiece(Mockito.anyString(),Mockito.any(Pieces.class))).thenReturn(Optional.of(mockPieceUpdated));
 
-        RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
-                "/pieces/someID").accept(
-                MediaType.APPLICATION_JSON);
         RequestBuilder requestBuilderPut = MockMvcRequestBuilders
                 .put("/pieces/edit/someID")
                 .accept(MediaType.APPLICATION_JSON).content(mockPieceUpdatedJSON)
                 .contentType(MediaType.APPLICATION_JSON);
-
-        MvcResult resultGet = mockMvc.perform(requestBuilderGet).andReturn();
-        System.out.println(resultGet.getResponse());
-        String expected = "{name:Anvelope-iarna,"+
-                "model:Mercedes-benz,"+
-                "utility:Piese-auto,"+
-                "type:Anvelope,"+
-                "owner:Tester121,"+
-                "price:121}";
-        JSONAssert.assertEquals(expected, resultGet.getResponse()
-                .getContentAsString(), false);
 
         MvcResult resultPut = mockMvc.perform(requestBuilderPut).andReturn();
         String expectedUpdate = "{name:Anvelope-vara,"+
