@@ -81,6 +81,19 @@ public class Pieces {
         this.price = price;
     }
 
+    public Pieces updateWith(Pieces piece) {
+        Pieces updated = new Pieces(
+                piece.name,
+                piece.model,
+                piece.utility,
+                piece.type,
+                piece.owner,
+                piece.price
+        );
+        updated.setId(piece.id);
+        return updated;
+    }
+
     @Override
     public String toString() {
         return "Pieces{" +

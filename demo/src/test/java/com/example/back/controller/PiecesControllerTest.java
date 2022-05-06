@@ -118,8 +118,7 @@ public class PiecesControllerTest {
         Pieces mockPieceUpdated = new Pieces("Anvelope-vara","Mercedes-benz","Piese-auto","Anvelope","Tester121",121);
         String mockPieceUpdatedJSON = "{\"name\":\"Anvelope-vara\",\"model\":\"Mercedes-benz\",\"utility\":\"Piese auto\",\"type\":\"Anvelope\",\"owner\":\"Tester121\",\"price\":\"121\"}";
 
-        Mockito.when(piecesService.findById(Mockito.anyString())).thenReturn(Optional.of(mockPiece));
-        Mockito.when(piecesService.editPiece(Mockito.any(Pieces.class))).thenReturn(mockPieceUpdated);
+        Mockito.when(piecesService.editPiece(Mockito.anyString(),Mockito.any(Pieces.class))).thenReturn(Optional.of(mockPieceUpdated));
 
         RequestBuilder requestBuilderGet = MockMvcRequestBuilders.get(
                 "/pieces/someID").accept(

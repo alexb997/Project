@@ -1,5 +1,6 @@
 package com.example.back.controller;
 
+import com.example.back.model.Car;
 import com.example.back.model.Pieces;
 import com.example.back.service.PiecesService;
 import org.springframework.data.domain.Page;
@@ -74,19 +75,10 @@ public class PiecesController {
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Pieces> editPiece(@PathVariable("id") String id, @RequestBody Pieces piece) {
-        Optional<Pieces> pieceData = piecesService.findById(id);
-        if (pieceData.isPresent()) {
-            Pieces newPieces = pieceData.get();
-            newPieces.setName(piece.getName());
-            newPieces.setUtility(piece.getName());
-            newPieces.setType(piece.getName());
-            newPieces.setModel(piece.getModel());
-            newPieces.setPrice(piece.getPrice());
-            newPieces.setOwner(piece.getOwner());
-            return new ResponseEntity<>(piecesService.editPiece(newPieces), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+
+        Optional<Pieces> updated = piecesService.editPiece(id,piece);
+        return updated.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
     }
 
     @DeleteMapping("/deleteAll")

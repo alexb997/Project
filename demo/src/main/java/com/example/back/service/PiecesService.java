@@ -1,5 +1,6 @@
 package com.example.back.service;
 
+import com.example.back.model.Car;
 import com.example.back.model.Pieces;
 import com.example.back.repository.PiecesRepository;
 import org.springframework.data.domain.Page;
@@ -55,8 +56,13 @@ public class PiecesService {
         return piecesRepository.save(piece);
     }
 
-    public Pieces editPiece(Pieces piece){
-        return piecesRepository.save(piece);
+    public Optional<Pieces> editPiece(String id, Pieces piece){
+        return piecesRepository.findById(id)
+                .map(oldPiece -> {
+                    Pieces updated = oldPiece.updateWith(piece);
+                    updated.setId(id);
+                    return piecesRepository.save(updated);
+                });
     }
 
     public void removeAllPieces(){
