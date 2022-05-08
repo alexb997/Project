@@ -1,7 +1,6 @@
 package com.example.back.integrations.car;
 
 import com.example.back.controller.CarController;
-import com.example.back.model.Car;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -38,7 +36,6 @@ public class CarIntegrationControllerTest {
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andDo(print());
-//                .andExpect(jsonPath("$.items",hasSize(2)));
     }
 
     @Test
@@ -57,7 +54,6 @@ public class CarIntegrationControllerTest {
 
         String content = result.getResponse().getContentAsString();
         id=content.substring(7,31);
-        System.out.println(id);
     }
 
     @Test
@@ -81,7 +77,6 @@ public class CarIntegrationControllerTest {
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andDo(print());
 
-        System.out.println("Updated car id="+id);
     }
 
     @Test
@@ -91,7 +86,6 @@ public class CarIntegrationControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
 
-        System.out.println("Deleted car id="+id);
     }
 
     @Test

@@ -49,7 +49,7 @@ public class CarControllerTest {
     @Test
     public void getCarTest() throws Exception {
         Mockito.when(
-                carService.findById(Mockito.anyString())).thenReturn(java.util.Optional.of(mockCar));
+                carService.findBy(Mockito.anyString())).thenReturn(java.util.Optional.of(mockCar));
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get(
                 "/cars/testID").accept(
                 MediaType.APPLICATION_JSON);

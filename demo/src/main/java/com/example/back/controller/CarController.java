@@ -26,7 +26,7 @@ public class CarController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Car> getCar(@PathVariable("id") String id) {
-        Optional<Car> carData = carService.findById(id);
+        Optional<Car> carData = carService.findBy(id);
         return carData.map(car -> new ResponseEntity<>(car, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
@@ -94,7 +94,7 @@ public class CarController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<HttpStatus> deleteCar(@PathVariable("id") String id) {
         try {
-            carService.removeCarById(id);
+            carService.removeCarBy(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             return new ResponseEntity("Couldn't delete",HttpStatus.INTERNAL_SERVER_ERROR);

@@ -44,16 +44,13 @@ public class UserControllerIntegrationTest {
 
         String content = result.getResponse().getContentAsString();
         id=content.substring(7,31);
-        System.out.println(id);
     }
 
     @Test
     @Order(2)
-    public void giveID_deleteUserTest() throws Exception {
+    public void givenExistingIdUserShouldBeDeleted() throws Exception {
         mvc.perform(delete("/users/delete/"+id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
-
-        System.out.println("Deleted user id="+id);
     }
 }

@@ -32,7 +32,7 @@ public class CarServiceTest {
     public void findByIdTest() throws Exception{
         Mockito.when(carRepository.findById(Mockito.anyString())).thenReturn(Optional.of(mockCar));
 
-        Optional<Car> result = carService.findById("SomeID");
+        Optional<Car> result = carService.findBy("SomeID");
         System.out.println(result.toString());
         assertThat(result).isNotEmpty();
     }
@@ -130,7 +130,7 @@ public class CarServiceTest {
     @Test
     public void removeByIDTest(){
         String mockId = "someID";
-        carService.removeCarById(mockId);
+        carService.removeCarBy(mockId);
         Mockito.verify(carRepository).deleteById(mockId);
     }
 

@@ -1,6 +1,5 @@
 package com.example.back.service;
 
-import com.example.back.model.Pieces;
 import com.example.back.model.User;
 import com.example.back.repository.UserRepository;
 import org.junit.runner.RunWith;

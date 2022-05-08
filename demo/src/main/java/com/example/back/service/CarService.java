@@ -20,7 +20,7 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-    public Optional<Car> findById(String id) {
+    public Optional<Car> findBy(String id) {
         return carRepository.findById(id);
     }
 
@@ -97,7 +97,7 @@ public class CarService {
         carRepository.deleteAll();
     }
 
-    public void removeCarById(String id ){
+    public void removeCarBy(String id ){
         carRepository.deleteById(id);
     }
 

@@ -58,12 +58,11 @@ public class PieceControllerIntegrationTest {
 
         String content = result.getResponse().getContentAsString();
         id=content.substring(7,31);
-        System.out.println(id);
     }
 
     @Test
     @Order(3)
-    public void giveID_getSpecificPiece_successTest() throws Exception {
+    public void givenExistentId_successGet() throws Exception {
         mvc.perform(get("/pieces/"+id).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andDo(print())
@@ -72,7 +71,7 @@ public class PieceControllerIntegrationTest {
 
     @Test
     @Order(4)
-    public void giveID_updatePieceTest() throws Exception {
+    public void updatePiece_thenStatusOk() throws Exception {
         String exampleUpdatePieceJson ="{\"name\":\"Anvelope-vara\",\"model\":\"Volvo\",\"utility\":\"Piese-auto\",\"type\":\"Anvelope\",\"owner\":\"Tester121\",\"price\":\"121\"}";
         mvc.perform(put("/pieces/edit/"+id)
                         .accept(MediaType.APPLICATION_JSON).content(exampleUpdatePieceJson)
@@ -81,23 +80,19 @@ public class PieceControllerIntegrationTest {
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andDo(print());
-
-        System.out.println("Updated piece id="+id);
     }
 
     @Test
     @Order(5)
-    public void giveID_deletePieceTest() throws Exception {
+    public void givenExistingId_DeletePiece() throws Exception {
         mvc.perform(delete("/pieces/delete/"+id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
-
-        System.out.println("Deleted piece id="+id);
     }
 
     @Test
     @Order(6)
-    public void giveID_getSpecificPiece_failureTest() throws Exception {
+    public void givenUnexistentID_FailGet() throws Exception {
         mvc.perform(get("/pieces/"+id).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
                 .andDo(print());
