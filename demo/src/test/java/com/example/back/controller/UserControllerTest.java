@@ -84,4 +84,15 @@ public class UserControllerTest {
         assertEquals(HttpStatus.CREATED.value(), response.getStatus());
     }
 
+    @Test
+    public void deleteUserTest() throws Exception {
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/users/delete/deleteID")
+                .contentType(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        assertEquals(204,response.getStatus());
+    }
+
 }

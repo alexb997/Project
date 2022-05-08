@@ -54,4 +54,11 @@ public class UserServiceTest {
         assertThat(result).isNotEmpty();
     }
 
+    @Test
+    public void removeByIDTest(){
+        String mockId = "someID";
+        userService.removeUserByID(mockId);
+        Mockito.verify(userService).removeUserByID(mockId);
+    }
+
 }
