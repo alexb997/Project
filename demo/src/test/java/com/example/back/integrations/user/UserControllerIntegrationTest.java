@@ -13,8 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -48,6 +47,15 @@ public class UserControllerIntegrationTest {
 
     @Test
     @Order(2)
+    public void loginExistingUserTest() throws Exception {
+        mvc.perform(get("/users/login?username=test&password=testing")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+    @Test
+    @Order(3)
     public void givenExistingIdUserShouldBeDeleted() throws Exception {
         mvc.perform(delete("/users/delete/"+id)
                         .contentType(MediaType.APPLICATION_JSON))
