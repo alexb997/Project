@@ -21,7 +21,7 @@ function AppRouter() {
         <Route path="/cars/filtered" element={<Results />} />
         <Route path="/piece/add" element={<AddPiece />} />
         <Route path="/piece/edit/:id" element={<EditPiece />} />
-        <Route path="/pieces/" element={<ResultsPiece />} />
+        <Route path="/pieces" element={<ResultsPiece />} />
         <Route path="/authentification" element={<Authentification />} />
         <Route path="/user/:username" element={<Profile />} />
       </Routes>
