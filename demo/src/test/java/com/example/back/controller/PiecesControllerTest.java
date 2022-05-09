@@ -141,9 +141,8 @@ public class PiecesControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .delete("/pieces/delete/deleteID")
                 .contentType(MediaType.APPLICATION_JSON);
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        MockHttpServletResponse response = result.getResponse();
-        assertEquals(204,response.getStatus());
+
+        mockMvc.perform(requestBuilder).andExpect(status().isNoContent());
     }
 
     @Test
@@ -151,8 +150,7 @@ public class PiecesControllerTest {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
                 .delete("/pieces/deleteAll")
                 .contentType(MediaType.APPLICATION_JSON);
-        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-        MockHttpServletResponse response = result.getResponse();
-        assertEquals(204,response.getStatus());
+
+        mockMvc.perform(requestBuilder).andExpect(status().isNoContent());
     }
 }
