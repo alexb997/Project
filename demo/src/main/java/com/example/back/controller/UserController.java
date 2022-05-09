@@ -3,10 +3,14 @@ package com.example.back.controller;
 import com.example.back.model.Car;
 import com.example.back.model.User;
 import com.example.back.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -17,6 +21,22 @@ public class UserController {
 
     public UserController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping("/")
+    public ResponseEntity<Response> getAllUsers(@RequestParam(defaultValue = "0") int page,
+                                                @RequestParam(defaultValue = "3") int size) {
+        try{
+            List<User> users;
+            Pageable paging = PageRequest.of(page, size);
+            Page<User> pageUsers;
+            pageUsers = userService.allUsers(paging);
+            users = pageUsers.getContent();
+            Response response = new Response(users,pageUsers.getTotalPages(),pageUsers.getTotalElements(),pageUsers.getNumber());
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("Users not found",HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/{username}")
@@ -42,6 +62,13 @@ public class UserController {
         }catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @PutMapping("/update/{username}")
+    public ResponseEntity<User> updateFavourites(@PathVariable String username, @RequestParam String id) {
+        Optional<User> updatedUser=userService.updateFavourites(username,id);
+        System.out.println(updatedUser);
+        return updatedUser.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/delete/{id}")

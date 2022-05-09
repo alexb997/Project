@@ -32,7 +32,6 @@ public class CarService {
         return carRepository.findById(id)
                 .map(oldCar -> {
                     Car updated = oldCar.updateWith(car);
-                    updated.setId(id);
                     return carRepository.save(updated);
                 });
     }
