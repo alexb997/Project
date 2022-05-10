@@ -1,4 +1,4 @@
-import React from "react";
+import { React } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import AddCar from "../components/cars/add/AddCar";
@@ -10,8 +10,15 @@ import EditPiece from "../components/pieces/edit/EditPiece";
 import Authentification from "../components/users/authentification/Authentification";
 import Profile from "../components/users/profile/Profile";
 import ResultsPiece from "../components/pieces/search/ResultsPiece";
+import { useState } from "react";
 
 function AppRouter() {
+  const [token, setToken] = useState();
+
+  if (!token) {
+    return <Authentification setToken={setToken} />;
+  }
+
   return (
     <Router>
       <Routes>

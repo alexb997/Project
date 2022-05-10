@@ -1,13 +1,44 @@
 import { React, useState } from "react";
 import { Container } from "react-bootstrap";
+import PropTypes from "prop-types";
 
-function Login() {
+export default function Login({ setToken }) {
   const [user, setUser] = useState({});
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const HandleSubmit = () => {
-    console.log("called submit handler");
+  // const HandleSubmit = () => {
+  //   console.log("called submit handler");
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   fetch(
+  //     "http://localhost:8080/users/login/?username=" +
+  //       username +
+  //       "&password=" +
+  //       password,
+  //     requestOptions
+  //   )
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setUser(data);
+  //       // if(user){
+  //       // }else{
+  //       // }
+  //     });
+  // };
+  const HandleSubmit = async (e) => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password,
+    });
+    setToken(token);
+  };
+  async function loginUser(credentials) {
     const requestOptions = {
       method: "GET",
       headers: {
@@ -24,11 +55,19 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-        // if(user){
-        // }else{
-        // }
+        if (user) {
+          return username;
+        } else {
+          return null;
+        }
       });
-  };
+    // .then((data) => {
+    //   setUser(data);
+    //   // if(user){
+    //   // }else{
+    //   // }
+    // });
+  }
 
   return (
     <Container className="login">
@@ -64,4 +103,6 @@ function Login() {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};
