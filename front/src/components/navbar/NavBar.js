@@ -12,6 +12,10 @@ function NavBar() {
     >
       <Container fluid>
         <Navbar.Brand href="/">Navbar scroll</Navbar.Brand>
+        <Navbar.Brand href="/">
+          {sessionStorage.getItem("username")}
+          {sessionStorage.getItem("favourites")}
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav>

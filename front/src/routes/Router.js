@@ -13,10 +13,10 @@ import ResultsPiece from "../components/pieces/search/ResultsPiece";
 import { useState } from "react";
 
 function AppRouter() {
-  const [token, setToken] = useState();
+  const username = sessionStorage.getItem("username");
 
-  if (!token) {
-    return <Authentification setToken={setToken} />;
+  if (!username) {
+    return <Authentification />;
   }
 
   return (
