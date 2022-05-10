@@ -75,7 +75,7 @@ function CarContainer(props) {
                   color="primary"
                 >
                   <StarIcon></StarIcon>
-                  <label>Add to Favourites</label>
+                  <label>Remove from Favourites</label>
                 </IconButton>
               )}
               {!fav && (
@@ -87,7 +87,7 @@ function CarContainer(props) {
                   color="primary"
                 >
                   <StarBorderOutlined></StarBorderOutlined>
-                  <label>Remove from Favourites</label>
+                  <label>Add to Favourites</label>
                 </IconButton>
               )}
             </Row>
