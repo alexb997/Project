@@ -1,7 +1,13 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import StarBorderOutlined from "@material-ui/icons/StarBorderOutlined";
+import StarIcon from "@material-ui/icons/Star";
+import Favorite from "@material-ui/icons/Favorite";
+import IconButton from "@material-ui/core/IconButton";
 
 function CarContainer(props) {
+  const [fav, setFav] = useState(false);
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -56,6 +62,34 @@ function CarContainer(props) {
               >
                 Delete
               </Button>
+            </Row>
+            <hr className="hr-invisible" />
+            <hr className="hr-invisible" />
+            <Row>
+              {fav && (
+                <IconButton
+                  onClick={() => {
+                    setFav(!fav);
+                  }}
+                  aria-label="delete"
+                  color="primary"
+                >
+                  <StarIcon></StarIcon>
+                  <label>Add to Favourites</label>
+                </IconButton>
+              )}
+              {!fav && (
+                <IconButton
+                  onClick={() => {
+                    setFav(!fav);
+                  }}
+                  aria-label="delete"
+                  color="primary"
+                >
+                  <StarBorderOutlined></StarBorderOutlined>
+                  <label>Remove from Favourites</label>
+                </IconButton>
+              )}
             </Row>
           </Col>
         </Row>
