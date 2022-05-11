@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import StarBorderOutlined from "@material-ui/icons/StarBorderOutlined";
 import StarIcon from "@material-ui/icons/Star";
-import Favorite from "@material-ui/icons/Favorite";
 import IconButton from "@material-ui/core/IconButton";
 
 function CarContainer(props) {
+  var username = sessionStorage.getItem("username");
+  // var favMap = new Map(JSON.parse(sessionStorage.getItem("favourites")));
   const [fav, setFav] = useState(false);
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -23,6 +24,18 @@ function CarContainer(props) {
         console.log(response);
       }
     );
+  };
+  const handleFav = async (id) => {
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(
+      "http://localhost:8080/users/update/" + username + "?id=" + id,
+      requestOptions
+    ).then((response) => response.json());
   };
   return (
     <div>
@@ -70,6 +83,7 @@ function CarContainer(props) {
                 <IconButton
                   onClick={() => {
                     setFav(!fav);
+                    handleFav(props.car.id);
                   }}
                   aria-label="delete"
                   color="primary"
@@ -82,6 +96,7 @@ function CarContainer(props) {
                 <IconButton
                   onClick={() => {
                     setFav(!fav);
+                    handleFav(props.car.id);
                   }}
                   aria-label="delete"
                   color="primary"
