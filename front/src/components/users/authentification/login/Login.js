@@ -25,9 +25,11 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-        console.log(data.favourites);
+        console.log(JSON.stringify(data.favourites));
         sessionStorage.setItem("username", data.username);
-        sessionStorage.setItem("favourites", data.favourites);
+        Object.entries(data.favourites).forEach(([key, value]) => {
+          sessionStorage.setItem(key, value);
+        });
       });
   };
 

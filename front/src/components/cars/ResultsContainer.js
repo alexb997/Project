@@ -1,14 +1,22 @@
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarBorderOutlined from "@material-ui/icons/StarBorderOutlined";
 import StarIcon from "@material-ui/icons/Star";
 import IconButton from "@material-ui/core/IconButton";
 
 function CarContainer(props) {
   var username = sessionStorage.getItem("username");
-  // var favMap = new Map(JSON.parse(sessionStorage.getItem("favourites")));
   const [fav, setFav] = useState(false);
+
+  useEffect(() => {
+    if (sessionStorage.getItem(props.car.id) === null) {
+      setFav(false);
+    } else {
+      setFav(true);
+    }
+  }, []);
+
   function Capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
@@ -26,6 +34,11 @@ function CarContainer(props) {
     );
   };
   const handleFav = async (id) => {
+    if (sessionStorage.getItem(id) === null) {
+      sessionStorage.setItem(id, true);
+    } else {
+      sessionStorage.removeItem(id);
+    }
     const requestOptions = {
       method: "PUT",
       headers: {
@@ -48,6 +61,7 @@ function CarContainer(props) {
             />
           </Col>
           <Col md={6}>
+            <Row>id:{props.car.id}</Row>
             <Row>
               Model:{Capitalize(props.car.model)} Color:
               {Capitalize(props.car.color)}
@@ -108,6 +122,7 @@ function CarContainer(props) {
             </Row>
           </Col>
         </Row>
+        <Row>Checking- {localStorage.getItem(props.car.id.toString())}</Row>
       </Container>
       <hr className="hr-invisible" />
     </div>
