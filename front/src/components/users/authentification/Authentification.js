@@ -10,8 +10,8 @@ function Authentification() {
 
   return (
     <Container>
-      <Row className="justify-content-center">
-        <Col sm={5} offset={6}>
+      <Row>
+        <Col sm={6}>
           <button className="choices" onClick={() => setLogin(true)}>
             Login
           </button>
@@ -20,7 +20,9 @@ function Authentification() {
           </button>
         </Col>
       </Row>
-      {login ? <Login /> : <Register />}
+      <Row>
+        <Col sm={6}>{login ? <Login /> : <Register />}</Col>
+      </Row>
     </Container>
   );
 }

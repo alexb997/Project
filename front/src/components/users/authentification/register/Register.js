@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 
 function Register() {
   const [user, setUser] = useState({});
@@ -42,7 +43,7 @@ function Register() {
   };
 
   return (
-    <div>
+    <Container>
       <h3>Register form</h3>
       <form
         onSubmit={(e) => {
@@ -71,7 +72,7 @@ function Register() {
         <hr className="hr-invisible" />
         <input className="input-submit" type="submit" value="Submit" />
       </form>
-    </div>
+    </Container>
   );
 }
 

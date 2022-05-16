@@ -217,7 +217,7 @@ function FiltersCar() {
             id="cargoVolume-search"
             placeholder="Cargo volume"
             name="keyword"
-            className="input-field "
+            className="input-field result-input"
             onChange={(e) => setCargoVolumeFilter(e.target.value)}
           />
         </Col>

@@ -112,7 +112,7 @@ function FiltersPiece() {
             type="text"
             id="owner-search"
             placeholder="Owner"
-            className="filter-input"
+            className="input-field"
             name="keyword"
             onChange={(e) => setOwnerFilter(e.target.value)}
           />

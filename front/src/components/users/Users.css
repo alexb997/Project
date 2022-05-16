@@ -25,4 +25,12 @@ form {
     display: block;
     text-align: left;
   }
+
+  .choices{
+    width: 50%;
+    background-color: white;
+    color:#00aeef;
+  }:focus{
+    font-weight: bold;
+  }
   
