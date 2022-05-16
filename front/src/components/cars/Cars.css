@@ -1,13 +1,13 @@
 
  
-  input {
+  .result-input {
     border: 1px solid #d9d9d9;
     background-color: rgb(233, 222, 222);
     border-radius: 4px;
     box-sizing: border-box;
   }
  
-  label {
+  .resContainer-label {
     color: #3d3d3d;
     display: block;
     font-family: sans-serif;

@@ -138,7 +138,7 @@ function Results(props) {
               type="text"
               id="brand-search"
               placeholder="Brand"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               name="keyword"
               onKeyUp={(e) => {
                 setBrandFilter(e.target.value);
@@ -156,7 +156,7 @@ function Results(props) {
               id="color-search"
               placeholder="Color"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setColorFilter(e.target.value);
                 handleChange();
@@ -173,7 +173,7 @@ function Results(props) {
               id="model-search"
               placeholder="Model"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setModelFilter(e.target.value);
                 handleChange();
@@ -190,7 +190,7 @@ function Results(props) {
               id="combustible-search"
               placeholder="Combustible"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setCombustibleFilter(e.target.value);
                 handleChange();
@@ -207,7 +207,7 @@ function Results(props) {
               id="body-search"
               placeholder="Body"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setBodyFilter(e.target.value);
                 handleChange();
@@ -224,7 +224,7 @@ function Results(props) {
               id="numberDoors-search"
               placeholder="Number doors"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setNumberDoorsFilter(e.target.value);
                 handleChange();
@@ -244,7 +244,7 @@ function Results(props) {
               id="cargoVolume-search"
               placeholder="Cargo volume"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setCargoVolumeFilter(e.target.value);
                 handleChange();
@@ -261,7 +261,7 @@ function Results(props) {
               id="price-search"
               placeholder="Price"
               name="keyword"
-              className="filter-results-input"
+              className="filter-results-input result-input"
               onKeyUp={(e) => {
                 setPriceFilter(e.target.value);
                 handleChange();

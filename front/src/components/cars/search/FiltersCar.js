@@ -131,7 +131,7 @@ function FiltersCar() {
             type="text"
             id="brand-search"
             placeholder="Brand"
-            className="input-field"
+            className="input-field result-input"
             name="keyword"
             onChange={(e) => setBrandFilter(e.target.value)}
           />
@@ -143,7 +143,7 @@ function FiltersCar() {
             id="color-search"
             placeholder="Color"
             name="keyword"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setColorFilter(e.target.value)}
           />
         </Col>
@@ -157,7 +157,7 @@ function FiltersCar() {
             id="model-search"
             placeholder="Model"
             name="keyword"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setModelFilter(e.target.value)}
           />
         </Col>
@@ -168,7 +168,7 @@ function FiltersCar() {
             id="combustible-search"
             placeholder="Combustible"
             name="keyword"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setCombustibleFilter(e.target.value)}
           />
         </Col>
@@ -182,7 +182,7 @@ function FiltersCar() {
             id="body-search"
             placeholder="Body"
             name="keyword"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setBodyFilter(e.target.value)}
           />
         </Col>
@@ -192,7 +192,7 @@ function FiltersCar() {
             type="number"
             id="price-search"
             placeholder="Price"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setPriceFilter(e.target.value)}
           />
         </Col>
@@ -206,7 +206,7 @@ function FiltersCar() {
             id="numberDoors-search"
             placeholder="Number doors"
             name="keyword"
-            className="input-field"
+            className="input-field result-input"
             onChange={(e) => setNumberDoorsFilter(e.target.value)}
           />
         </Col>
@@ -217,7 +217,7 @@ function FiltersCar() {
             id="cargoVolume-search"
             placeholder="Cargo volume"
             name="keyword"
-            className="input-field"
+            className="input-field "
             onChange={(e) => setCargoVolumeFilter(e.target.value)}
           />
         </Col>
